@@ -1,0 +1,32 @@
+.product-image:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.link-dark:hover {
+    color: #fcbf09 !important;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.order-button{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.order-button:hover{
+    font-weight: 600;
+    text-transform: uppercase;
+    background: #e4ad09 !important;
+}
+
+.max-lines{
+    max-width: 100%;
+    display: block; /* or inline-block */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 4.5em;
+    line-height: 1.5em;
+}
