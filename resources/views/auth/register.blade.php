@@ -17,7 +17,7 @@
                                         </p>
                                     </div>
                                     <div class="form-body">
-                                        <form class="row g-3" method="POST" action="">
+                                        <form class="row g-3" method="POST" action="{{route('web.customer.account.register')}}">
                                             @csrf
                                             <div class="col-sm-6">
                                                 <label for="inputFirstName" class="form-label">First Name<span

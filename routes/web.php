@@ -5,6 +5,8 @@ use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WebsiteController;
+use App\Http\Controllers\Frontend\ElectricianController;
+use App\Http\Controllers\Frontend\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 // ---------------------------------------------------------------
@@ -54,6 +56,11 @@ Route::controller(AccountController::class)->middleware('auth')->prefix('account
     Route::post('/password/changes', 'userPasswordChange')->name('web.user.password.change');
 });
 
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('/register', 'index')->name('web.customer.account');
+    Route::post('', 'insert')->name('web.customer.account.register');
+});
+
 // <-- --------------- PRODUCT ROUTE LIST ---------------- -->
 Route::controller(WebsiteController::class)->group(function () {
     Route::get('product/{product_url}', 'productView')->name('web.product.view');
@@ -89,6 +96,23 @@ Route::controller(CheckoutController::class)->prefix('checkout')->group(function
     // Route::get('/payment', 'checkoutPayment')->name('web.checkout.payment');
     // Route::get('/review', 'checkoutReview')->name('web.checkout.review');
     // Route::get('/complect', 'checkoutComplect')->name('web.checkout.complect');
+});
+
+
+
+Route::controller(ElectricianController::class)->group(function () {
+    Route::prefix('/electrician')->group(function(){
+        Route::get('', 'index')->name('web.electrician.home');
+        Route::get('/registration', 'registration')->name('web.electrician.registration');
+        Route::get('/profile', 'profile')->name('electrician.profile');
+        // Route::get('view/{slug}','view');
+        // Route::get('edit/{slug}','edit');
+        // Route::post('update', 'update');
+        // Route::post('softdelete', 'softdelete');
+        // Route::post('restore', 'restore');
+        // Route::post('delete', 'delete');
+        // Route::post('/store-data','store')->name('store.data');
+    });
 });
 
 // DATABASE RESET ROUTE

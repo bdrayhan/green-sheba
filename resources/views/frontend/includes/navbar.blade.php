@@ -96,6 +96,10 @@
                                                 class='bx bx-user'></i></a>
                                     </li>
                                 @endguest
+                                @guest
+                                    <li class="nav-item"><a href="{{ route('web.customer.account')}}" class="nav-link cart-link"><i class="fas fa-plus-circle"></i></a>
+                                    </li>
+                                @endguest
                                 <li class="nav-item dropdown dropdown-large">
                                     <a href="#"
                                         class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
@@ -183,6 +187,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{ route('web.contact.form') }}">
                                 Contact
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('web.electrician.home')}}">
+                                Electrician
                             </a>
                         </li>
                     </ul>

@@ -83,6 +83,7 @@
         })
     });
 </script>
+<script src="{{ asset('frontend') }}/assets/js/all.min.js"></script>
 <script src="{{ asset('frontend') }}/assets/js/app.js"></script>
 <script src="{{ asset('frontend') }}/assets/js/index.js"></script>
 <script src="{{ asset('frontend') }}/assets/js/add-to-cart.js"></script>

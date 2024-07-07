@@ -393,8 +393,8 @@ class ComposerStaticInitcf5ea0f27bf7502b683ecb9fe8bf8e02
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -684,6 +684,7 @@ class ComposerStaticInitcf5ea0f27bf7502b683ecb9fe8bf8e02
         'App\\Http\\Controllers\\Frontend\\AccountController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/AccountController.php',
         'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',
         'App\\Http\\Controllers\\Frontend\\CheckoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CheckoutController.php',
+        'App\\Http\\Controllers\\Frontend\\ElectricianController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ElectricianController.php',
         'App\\Http\\Controllers\\Frontend\\WebsiteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/WebsiteController.php',
         'App\\Http\\Controllers\\Frontend\\WishlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/WishlistController.php',
         'App\\Http\\Controllers\\SettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/SettingController.php',
@@ -721,6 +722,7 @@ class ComposerStaticInitcf5ea0f27bf7502b683ecb9fe8bf8e02
         'App\\Models\\Courier' => __DIR__ . '/../..' . '/app/Models/Courier.php',
         'App\\Models\\CourierCity' => __DIR__ . '/../..' . '/app/Models/CourierCity.php',
         'App\\Models\\CourierZone' => __DIR__ . '/../..' . '/app/Models/CourierZone.php',
+        'App\\Models\\Electrician' => __DIR__ . '/../..' . '/app/Models/Electrician.php',
         'App\\Models\\FeatureCategory' => __DIR__ . '/../..' . '/app/Models/FeatureCategory.php',
         'App\\Models\\Media' => __DIR__ . '/../..' . '/app/Models/Media.php',
         'App\\Models\\MenuBar' => __DIR__ . '/../..' . '/app/Models/MenuBar.php',

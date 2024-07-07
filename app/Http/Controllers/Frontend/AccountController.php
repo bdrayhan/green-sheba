@@ -8,6 +8,9 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -88,6 +91,8 @@ class AccountController extends Controller
             [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
                 'name' => $request->first_name . ' ' . $request->last_name,
             ]
         );

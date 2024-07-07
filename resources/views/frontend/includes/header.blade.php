@@ -47,6 +47,7 @@
     <!-- Sweet Alert-->
     <link href="{{ asset('backend') }}/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('frontend') }}/assets/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('frontend') }}/assets/css/app.css" rel="stylesheet">
     <link href="{{ asset('frontend') }}/assets/css/boxicons.min.css" rel="stylesheet">
     <link href="{{ asset('frontend') }}/assets/css/icons.css" rel="stylesheet">
