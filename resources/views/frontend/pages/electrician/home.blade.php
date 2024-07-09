@@ -77,6 +77,9 @@
                                 </div>
                             <div class="col-md-2"></div>
                         </div>
+                        @php
+                            $electrician=App\Models\Electrician::where('status',1)->orderBy('id','DESC')->get();
+                        @endphp
                         <table id="alltableinfo"
                             class="table table-bordered table-striped table-hover dt-responsive nowrap custom_table mt-4">
                             <thead class="table-secondary">
@@ -86,41 +89,22 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Category</th>
-                                    {{-- <th>Status</th> --}}
                                     <th>Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                
+                                @foreach ($electrician as $data)
                                     <tr>
-                                        <td>01</td>
                                         <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}}
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>02</td>
                                         <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
+                                        <td>{{ $data->first_name  }}</td>
+                                        <td>{{ $data->phone }}</td>
+                                        <td>{{ $data->electrician->name }}</td>
+                                        <td><a href="{{url('electrician/profile/'.$data->slug)}}">view details</a></td>
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
-                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

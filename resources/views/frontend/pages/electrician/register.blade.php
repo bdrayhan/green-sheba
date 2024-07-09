@@ -66,7 +66,7 @@
                                 <div class="form-group col-md-8 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Phone<span class="req_star">*</span>:</label>
                                     <input type="tel" class="form-control form_control" name="phone"
-                                        placeholder="Enter Phone number" value="{{old('phone')}}" required>
+                                        placeholder="Enter Phone number" value="{{old('phone')}}">
                                     @if ($errors->has('phone'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('phone') }}</strong>
@@ -108,16 +108,17 @@
                                 </div>
                                 <div class="form-group col-md-8 mb-3 {{ $errors->has('category') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Electrician Category<span class="req_star">*</span>:</label>
+                                    @php
+                                        $category=App\Models\ElectricianCategory::where('status',1)->OrderBy('id','DESC')->get();
+                                    @endphp
                                     <div class="">
                                         <select name="category" id="" class="form-control form_control">
                                             <option value="">Choose Category</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
-                                            <option value="1">Ac Electrician</option>
+                                            @foreach($category as $data)
+                                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+
+                                            @endforeach
+                                            
                                         </select>
                                         @if ($errors->has('category'))
                                             <span class="invalid-feedback" role="alert">
@@ -164,13 +165,13 @@
                                 </div>
                                 
                                 
-                                <div class="form-group col-md-8 mb-3 {{ $errors->has('address') ? ' has-error' : '' }}">
-                                    <label class="col-form-label col_form_label">Address<span class="req_star">*</span>:</label>
-                                    <textarea class="form-control form_control" name="address"
-                                        placeholder="Enter Address" value="{{old('address')}}"></textarea>
-                                    @if ($errors->has('address'))
+                                <div class="form-group col-md-8 mb-3 {{ $errors->has('address1') ? ' has-error' : '' }}">
+                                    <label class="col-form-label col_form_label">Address :</label>
+                                    <textarea class="form-control form_control" name="address1"
+                                        placeholder="Enter Address" value="{{old('address1')}}"></textarea>
+                                    @if ($errors->has('address1'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('address') }}</strong>
+                                            <strong>{{ $errors->first('address1') }}</strong>
                                         </span>
                                     @endif
                                 </div>
