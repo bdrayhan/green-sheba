@@ -8,14 +8,14 @@
                 <div class="card">
                     <div class="card-header card_header">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h4 class="card-title card_title"><i class="fab fa-gg-circle"></i> View Electrician Information</h4>
+                            <div class="col-md-12 text-center">
+                                <h4 class="card-title card_title"> View Electrician Information</h4>
                             </div>
-                            <div class="col-md-4 text-end">
+                            {{-- <div class="col-md-4 text-end">
                                 <a href="{{ route('web.electrician.home') }}"
                                     class="btn btn-secondary btn-md waves-effect btn-label waves-light card_btn"><i
                                         class="fas fa-th label-icon"></i> Electricians</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -36,10 +36,10 @@
                             <div class="col-md-2"></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-4 text-center mt-4">
                                 <img width="300px" src="{{asset('frontend')}}/assets/images/avatars/avatar-1.png" alt="">
                             </div>
-                            <div class="col-md-8 mt-3">
+                            <div class="col-md-8 mt-4">
                                 <table
                                     class="table table-bordered table-striped table-hover dt-responsive nowrap custom_view_table">
                                     
@@ -99,13 +99,13 @@
                             {{-- <div class="col-md-2"></div> --}}
                         </div>
                     </div>
-                    <div class="card-footer card_footer">
+                    {{-- <div class="card-footer card_footer">
                         <div class="btn-group mt-2" role="group">
                             <a href="#" onclick="window.print()" class="btn btn-secondary">Print</a>
                             <a href="#" class="btn btn-dark">PDF</a>
                             <a href="#" class="btn btn-secondary">Excel</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

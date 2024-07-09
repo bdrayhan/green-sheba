@@ -41,7 +41,7 @@ class SetupSeeder extends Seeder
             [
                 'name' => 'Super Admin',
                 'email' => 'superadmin@mail.com',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('12345678'),
                 'slug' => uniqid('', true),
             ],
         );

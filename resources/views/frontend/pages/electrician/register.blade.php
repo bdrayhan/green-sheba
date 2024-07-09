@@ -5,7 +5,7 @@
     <section class="container">
         <div class="row">
             <div class="col-12">
-                <form method="post" action="#" enctype="multipart/form-data">
+                <form method="post" action="{{route('web.electrician.insert')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header card_header">
@@ -37,7 +37,6 @@
                                 </div>
                                 <div class="col-md-2"></div>
                             </div>
-    
                             <div class="row d-flex justify-content-center">
                                 <div class="form-group col-md-4 mb-3 {{ $errors->has('first_name') ? ' has-error' : '' }}">
                                     <label class=" col-form-label col_form_label">First Name<span
@@ -66,8 +65,8 @@
                                 </div>
                                 <div class="form-group col-md-8 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Phone<span class="req_star">*</span>:</label>
-                                    <input type="text" class="form-control form_control" name="phone"
-                                        placeholder="Enter Phone number" value="{{old('phone')}}">
+                                    <input type="tel" class="form-control form_control" name="phone"
+                                        placeholder="Enter Phone number" value="{{old('phone')}}" required>
                                     @if ($errors->has('phone'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('phone') }}</strong>
@@ -97,21 +96,20 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-md-8 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <div class="form-group col-md-8 mb-3 {{ $errors->has('nid_number') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Nid<span class="req_star">*</span>:</label>
-                                    <input type="text" class="form-control form_control" name="phone"
-                                        placeholder="Enter Phone number" value="{{old('phone')}}">
-                                    @if ($errors->has('phone'))
+                                    <input type="text" class="form-control form_control" name="nid_number"
+                                        placeholder="Enter Nid number" value="{{old('nid_number')}}">
+                                    @if ($errors->has('nid_number'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('phone') }}</strong>
+                                            <strong>{{ $errors->first('nid_number') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-md-8 mb-3 {{ $errors->has('role') ? ' has-error' : '' }}">
+                                <div class="form-group col-md-8 mb-3 {{ $errors->has('category') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Electrician Category<span class="req_star">*</span>:</label>
                                     <div class="">
-                                        
-                                        <select name="role" id="" class="form-control form_control">
+                                        <select name="category" id="" class="form-control form_control">
                                             <option value="">Choose Category</option>
                                             <option value="1">Ac Electrician</option>
                                             <option value="1">Ac Electrician</option>
@@ -121,42 +119,44 @@
                                             <option value="1">Ac Electrician</option>
                                             <option value="1">Ac Electrician</option>
                                         </select>
-                                        @if ($errors->has('role'))
+                                        @if ($errors->has('category'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('role') }}</strong>
+                                                <strong>{{ $errors->first('category') }}</strong>
                                             </span>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="form-group col-md-8 mb-3">
                                     <div class="row">
-                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                            <label class="col-form-label col_form_label">Distric<span class="req_star">*</span>:</label>
-                                            <input type="text" class="form-control form_control" name="phone"
-                                                placeholder="Enter Phone number" value="{{old('phone')}}">
-                                            @if ($errors->has('phone'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('phone') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
+                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('division') ? ' has-error' : '' }}">
                                             <label class="col-form-label col_form_label">Division<span class="req_star">*</span>:</label>
-                                            <input type="text" class="form-control form_control" name="phone"
-                                                placeholder="Enter Phone number" value="{{old('phone')}}">
-                                            @if ($errors->has('phone'))
+                                            <select id="division-dd" name="division" class="form-select" aria-label="Default select example">
+                                                <option value="" selected>Select Division</option>
+                                                @foreach($divisions as $data)
+                                                <option value="{{$data->id}}">{{$data->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('division'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                    <strong>{{ $errors->first('division') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
-                                            <label class="col-form-label col_form_label">Thana<span class="req_star">*</span>:</label>
-                                            <input type="text" class="form-control form_control" name="phone"
-                                                placeholder="Enter Phone number" value="{{old('phone')}}">
-                                            @if ($errors->has('phone'))
+                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('district') ? ' has-error' : '' }}">
+                                            <label class="col-form-label col_form_label">District<span class="req_star">*</span>:</label>
+                                            
+                                            @if ($errors->has('district'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                    <strong>{{ $errors->first('district') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-md-4 mb-3 {{ $errors->has('thana') ? ' has-error' : '' }}">
+                                            <label class="col-form-label col_form_label">Thana<span class="req_star">*</span>:</label>
+                                            
+                                            @if ($errors->has('thana'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('thana') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -164,23 +164,23 @@
                                 </div>
                                 
                                 
-                                <div class="form-group col-md-8 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <div class="form-group col-md-8 mb-3 {{ $errors->has('address') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Address<span class="req_star">*</span>:</label>
-                                    <textarea class="form-control form_control" name="phone"
-                                        placeholder="Enter Phone number" value="{{old('phone')}}"></textarea>
-                                    @if ($errors->has('phone'))
+                                    <textarea class="form-control form_control" name="address"
+                                        placeholder="Enter Address" value="{{old('address')}}"></textarea>
+                                    @if ($errors->has('address'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('phone') }}</strong>
+                                            <strong>{{ $errors->first('address') }}</strong>
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group col-md-8 mb-3 {{ $errors->has('phone') ? ' has-error' : '' }}">
+                                <div class="form-group col-md-8 mb-3 {{ $errors->has('fb_account') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Fb Account Link :</label>
-                                    <input type="text" class="form-control form_control" name="phone"
-                                        placeholder="Enter Phone number" value="{{old('phone')}}">
-                                    @if ($errors->has('phone'))
+                                    <input type="text" class="form-control form_control" name="fb_account"
+                                        placeholder="Enter Facebook Link" value="{{old('fb_account')}}">
+                                    @if ($errors->has('fb_account'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('phone') }}</strong>
+                                            <strong>{{ $errors->first('fb_account') }}</strong>
                                         </span>
                                     @endif
                                 </div>

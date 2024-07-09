@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3"></div>
@@ -32,23 +31,41 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3 ">
-                                                    <label for="business_name">Division <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="" placeholder=""
-                                                        name="" value="" required>
+                                                    <label for="business_name">Division<span class="text-danger">*</span></label>
+                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
+                                                        <option value="" selected>Select Division</option>
+                                                        @foreach($divisions as $data)
+                                                        <option value="{{$data->id}}">{{$data->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
+                                                @php
+                                                    $district= App\Models\District::orderBy('id','ASC')->get();
+                                                @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">District<span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="" placeholder=""
-                                                        name="" value="" required>
+                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
+                                                        <option value="" selected>Select District</option>
+                                                        @foreach($district as $data)
+                                                        <option value="{{$data->id}}">{{$data->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
+                                                @php
+                                                    $upazila=App\Models\Upazila::orderBy('id','ASC')->get();
+                                                @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">Upazila/Thana<span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="" placeholder=""
-                                                        name="" value="" required>
+                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
+                                                        <option value="" selected>Select Upazila</option>
+                                                        @foreach($upazila as $data)
+                                                        <option value="{{$data->id}}">{{$data->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-top: 22px">
@@ -69,8 +86,8 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Category</th>
-                                    {{-- <th>Status</th>
-                                    <th>Manage</th> --}}
+                                    {{-- <th>Status</th> --}}
+                                    <th>Manage</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,8 +98,8 @@
                                         <td>0123456789</td>
                                         <td>ac electrician</td>
                                         {{-- <td>active</td>
-                                        <td>active</td> --}}
-                                        {{-- <td><a href="{{route('electrician.profile')}}">view details</a></td> --}}
+                                        {{-- <td>active</td> --}}
+                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
                                     </tr>
                                     <tr>
                                         <td>02</td>
@@ -91,8 +108,8 @@
                                         <td>0123456789</td>
                                         <td>ac electrician</td>
                                         {{-- <td>active</td>
-                                        <td>active</td> --}}
-                                        {{-- <td><a href="{{route('electrician.profile')}}">view details</a></td> --}}
+                                        {{-- <td>active</td> --}} 
+                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
                                     </tr>
                                     <tr>
                                         <td>03</td>
@@ -101,8 +118,8 @@
                                         <td>0123456789</td>
                                         <td>ac electrician</td>
                                         {{-- <td>active</td>
-                                        <td>active</td> --}}
-                                        {{-- <td><a href="{{route('electrician.profile')}}">view details</a></td> --}}
+                                        {{-- <td>active</td> --}} 
+                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
                                     </tr>
                             </tbody>
                         </table>

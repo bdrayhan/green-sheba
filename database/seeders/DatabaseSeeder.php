@@ -28,7 +28,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SetupSeeder::class,
-            DemoImportSeeder::class
+            DemoImportSeeder::class,
+            DivisionSeeder::class,
+            DistrictSeeder::class,
+            UpazilaSeeder::class,
         ]);
         Tag::factory(10)->create();
         Coupon::factory(5)->create();

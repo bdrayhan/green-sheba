@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 50)->nullable();
             $table->string('last_name', 50)->nullable();
-            $table->string('phone', 20)->unique();
+            $table->string('phone',20)->nullable();
             $table->string('email',)->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('nid_number')->nullable();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('nid_image')->nullable();
             $table->string('image')->nullable();
             $table->integer('status')->default(1);
+            $table->string('slug',30)->nullable();
             $table->timestamps();
         });
     }

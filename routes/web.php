@@ -104,14 +104,14 @@ Route::controller(ElectricianController::class)->group(function () {
     Route::prefix('/electrician')->group(function(){
         Route::get('', 'index')->name('web.electrician.home');
         Route::get('/registration', 'registration')->name('web.electrician.registration');
-        Route::get('/profile', 'profile')->name('electrician.profile');
+        Route::post('/registration', 'insert')->name('web.electrician.insert');
         // Route::get('view/{slug}','view');
         // Route::get('edit/{slug}','edit');
-        // Route::post('update', 'update');
         // Route::post('softdelete', 'softdelete');
         // Route::post('restore', 'restore');
         // Route::post('delete', 'delete');
         // Route::post('/store-data','store')->name('store.data');
+        Route::get('/profile', 'profile')->name('electrician.profile');
     });
 });
 
