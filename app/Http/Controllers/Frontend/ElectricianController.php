@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\Electrician;
-use App\Models\ElectricianCategory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -73,8 +72,7 @@ class ElectricianController extends Controller
             'date_of_birth'=>$request->date_of_birth,
             'nid_number'=>$request->nid_number,
             'electrician_category'=>$request->category,
-            'address1'=>$request->address1,
-            'address2'=>$request->division,
+            'address'=>$request->address,
             'fb_account'=>$request->fb_account,
             'slug'=>$slug,
         ]);
@@ -103,15 +101,5 @@ class ElectricianController extends Controller
 
     public function customer(){
         return view('frontend.pages.customer.dashboard');
-    }
-
-
-    public function admin_electrician(){
-        return view('backend.electrician.all');
-    }
-
-    public function admin_view($slug){
-        $data=Electrician::where('status',1)->where('slug',$slug)->firstOrFail();
-        return view('backend.electrician.view',compact('data'));
     }
 }

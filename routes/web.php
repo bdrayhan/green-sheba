@@ -114,6 +114,7 @@ Route::controller(ElectricianController::class)->group(function () {
         Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
     });
 });
+Route::get('/search',[ElectricianController::class,'search']);
 
 // DATABASE RESET ROUTE
 //Route::get('db-reset', function () {
