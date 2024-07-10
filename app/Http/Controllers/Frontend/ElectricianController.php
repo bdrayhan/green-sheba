@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\Electrician;
+use App\Models\Upazila;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -31,7 +32,8 @@ class ElectricianController extends Controller
             'date_of_birth'=>$request->date_of_birth,
             'nid_number'=>$request->nid_number,
             'electrician_category'=>$request->category,
-            'address'=>$request->address,
+            'address1'=>$request->division,
+            'address2'=>$request->address,
             'fb_account'=>$request->fb_account,
             'slug'=>$slug,
         ]);
@@ -57,5 +59,13 @@ class ElectricianController extends Controller
 
     public function customer(){
         return view('frontend.pages.customer.dashboard');
+    }
+
+    public function search(Request $request){
+        $search = $request->search;
+
+        $upazila= Upazila::where(function($query) use ($search){
+            $query->where();
+        });
     }
 }

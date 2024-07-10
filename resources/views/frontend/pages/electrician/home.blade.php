@@ -27,7 +27,7 @@
                             <h1 class="mb-5 mt-4 " style="font-size: 36px; font-weight: 800;">All Electrician</h1>
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
-                                    <form action="">
+                                    <form action="/search" method="GET">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3 ">
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 @php
-                                                    $district= App\Models\District::orderBy('id','ASC')->get();
+                                                    $district= App\Models\District::orderBy('name','ASC')->get();
                                                 @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">District<span class="text-danger">*</span></label>
@@ -56,7 +56,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 @php
-                                                    $upazila=App\Models\Upazila::orderBy('id','ASC')->get();
+                                                    $upazila=App\Models\Upazila::orderBy('name','ASC')->get();
                                                 @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">Upazila/Thana<span class="text-danger">*</span></label>
@@ -86,41 +86,26 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Category</th>
-                                    {{-- <th>Status</th> --}}
+                                    <th>Location</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
+                                @php
+                                    $electricians=App\Models\Electrician::orderBy('id','ASC')->get();
+                                @endphp
                             <tbody>
+                                    @foreach($electricians as $data)
                                     <tr>
-                                        <td>01</td>
                                         <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
+                                        <td></td>
+                                        <td>{{$data->first_name}}</td>
+                                        <td>{{$data->phone}}</td>
+                                        <td>{{$data->electrician_category}}</td>
+                                        <td>{{$data->address1}}</td>
                                         {{-- <td>active</td> --}}
                                         <td><a href="{{route('electrician.profile')}}">view details</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
-                                    </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>
