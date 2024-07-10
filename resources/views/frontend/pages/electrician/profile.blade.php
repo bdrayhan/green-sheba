@@ -77,7 +77,11 @@
                                     <tr>
                                         <td>Address1</td>
                                         <td>:</td>
-                                        <td>{{ $data->address1 }}</td>
+                                        <td>
+                                            {{ $data->division->name }},
+                                            {{ $data->district->name }},
+                                            {{ $data->upazila->name }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Address2</td>

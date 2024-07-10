@@ -145,7 +145,15 @@
                                         </div>
                                         <div class="form-group col-md-4 mb-3 {{ $errors->has('district') ? ' has-error' : '' }}">
                                             <label class="col-form-label col_form_label">District<span class="req_star">*</span>:</label>
-                                            
+                                            @php
+                                                $district=App\Models\District::orderBy('name','ASC')->get();
+                                            @endphp
+                                            <select id="division-dd" name="district" class="form-select" aria-label="Default select example">
+                                                <option value="" selected>Select District</option>
+                                                @foreach($district as $data)
+                                                <option value="{{$data->id}}">{{$data->name}}</option>
+                                                @endforeach
+                                            </select>
                                             @if ($errors->has('district'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('district') }}</strong>
@@ -153,8 +161,16 @@
                                             @endif
                                         </div>
                                         <div class="form-group col-md-4 mb-3 {{ $errors->has('thana') ? ' has-error' : '' }}">
-                                            <label class="col-form-label col_form_label">Thana<span class="req_star">*</span>:</label>
-                                            
+                                            <label class="col-form-label col_form_label">Upazila<span class="req_star">*</span>:</label>
+                                            @php
+                                                $thana=App\Models\Upazila::orderBy('name','ASC')->get();
+                                            @endphp
+                                            <select id="division-dd" name="upazila" class="form-select" aria-label="Default select example">
+                                                <option value="" selected>Select Upazila</option>
+                                                @foreach($thana as $data)
+                                                <option value="{{$data->id}}">{{$data->name}}</option>
+                                                @endforeach
+                                            </select>
                                             @if ($errors->has('thana'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('thana') }}</strong>

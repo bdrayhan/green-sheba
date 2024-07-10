@@ -73,7 +73,8 @@ class ElectricianController extends Controller
             'date_of_birth'=>$request->date_of_birth,
             'nid_number'=>$request->nid_number,
             'electrician_category'=>$request->category,
-            'address'=>$request->address,
+            'address1'=>$request->division.','.$request->district. ','.$request->upazila,
+            'address2'=>$request->address1,
             'fb_account'=>$request->fb_account,
             'slug'=>$slug,
         ]);
@@ -103,4 +104,21 @@ class ElectricianController extends Controller
     public function customer(){
         return view('frontend.pages.customer.dashboard');
     }
+
+    public function search(){
+        return view('frontend.pages.electrician.home');
+    }
+
+    // public function search(Request $request){
+    //     $search = $request->search;
+
+    //     $electrician = Electrician::where(function($query) use ($search){
+    //         $query->where('address2','like',"%$search%")
+    //         ->orWhere('address1','like',"%$search%");
+    //     })
+
+    //     ->get();
+    //     return view('frontend.pages.electrician.home',compact('electrician','search'));
+
+    // }
 }

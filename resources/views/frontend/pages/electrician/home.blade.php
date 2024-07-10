@@ -27,13 +27,16 @@
                             <h1 class="mb-5 mt-4 " style="font-size: 36px; font-weight: 800;">All Electrician</h1>
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
-                                    <form action="/search" method="GET">
+                                    <form action="/electrician/search" method="GET">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="mb-3 ">
                                                     <label for="business_name">Division<span class="text-danger">*</span></label>
-                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
-                                                        <option value="" selected>Select Division</option>
+                                                    @php
+                                                        $divisions=App\Models\Division::orderBy('name','ASC')->get();
+                                                    @endphp
+                                                    <select id="division-dd" name="" class="form-select" aria-label="Default select example">
+                                                        <option value="" >Select Division</option>
                                                         @foreach($divisions as $data)
                                                         <option value="{{$data->id}}">{{$data->name}}</option>
                                                         @endforeach
@@ -46,8 +49,8 @@
                                                 @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">District<span class="text-danger">*</span></label>
-                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
-                                                        <option value="" selected>Select District</option>
+                                                    <select id="division-dd" name="" class="form-select" aria-label="Default select example">
+                                                        <option value="">Select District</option>
                                                         @foreach($district as $data)
                                                         <option value="{{$data->id}}">{{$data->name}}</option>
                                                         @endforeach
@@ -60,8 +63,8 @@
                                                 @endphp
                                                 <div class="mb-3 ">
                                                     <label for="business_name">Upazila/Thana<span class="text-danger">*</span></label>
-                                                    <select id="division-dd" class="form-select" aria-label="Default select example">
-                                                        <option value="" selected>Select Upazila</option>
+                                                    <select id="division-dd" name="search" class="form-select" aria-label="Default select example">
+                                                        <option value="">Select Upazila</option>
                                                         @foreach($upazila as $data)
                                                         <option value="{{$data->id}}">{{$data->name}}</option>
                                                         @endforeach
@@ -77,9 +80,6 @@
                                 </div>
                             <div class="col-md-2"></div>
                         </div>
-                        @php
-                            $electrician=App\Models\Electrician::where('status',1)->orderBy('id','DESC')->get();
-                        @endphp
                         <table id="alltableinfo"
                             class="table table-bordered table-striped table-hover dt-responsive nowrap custom_table mt-4">
                             <thead class="table-secondary">
@@ -89,7 +89,7 @@
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Category</th>
-                                    {{-- <th>Status</th> --}}
+                                    <th>Location</th>
                                     <th>Manage</th>
                                 </tr>
                             </thead>
@@ -97,26 +97,22 @@
                                     $electricians=App\Models\Electrician::orderBy('id','ASC')->get();
                                 @endphp
                             <tbody>
+                                @foreach($electricians as $data)
                                     <tr>
                                         <td></td>
                                         <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
+                                        <td>{{ $data->first_name }}</td>
+                                        <td>{{ $data->phone }}</td>
+                                        <td>{{ $data->electrician->name }}</td>
+                                        <td>
+                                            {{ $data->division->name }},
+                                            {{ $data->district->name }},
+                                            {{ $data->upazila->name }}
+                                        </td>
                                         {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
+                                        <td><a href="{{url('electrician/profile/'.$data->slug)}}">view details</a></td>
                                     </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td></td>
-                                        <td>Rayhan</td>
-                                        <td>0123456789</td>
-                                        <td>ac electrician</td>
-                                        {{-- <td>active</td>
-                                        {{-- <td>active</td> --}} 
-                                        <td><a href="{{route('electrician.profile')}}">view details</a></td>
-                                    </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>
