@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\Electrician;
+use App\Models\ElectricianCategory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
