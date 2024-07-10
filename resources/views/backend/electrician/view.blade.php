@@ -56,59 +56,60 @@
                         </div>
                         <div class="col-md-8 mt-4">
                             <table
-                                class="table table-bordered table-striped table-hover dt-responsive nowrap custom_view_table">
-                                
+                                class="table table-bordered table-striped table-hover dt-responsive nowrap custom_view_table"> 
+                                <tbody>
                                 <tr>
                                     <td>Name</td>
                                     <td>:</td>
-                                    <td></td>
-                                    {{-- <td>{{ $data->first_name . ' ' . $data->last_name }}</td> --}}
+                                    {{-- <td></td> --}}
+                                    <td>{{ $data->first_name . ' ' . $data->last_name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Phone No</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->phone }}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->email }}</td>
                                 </tr>
                                 <tr>
                                     <td>Date of Birth</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->date_of_birth }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Nid</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->nid_number}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Electrician Category</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->electrician->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Address1</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->address1 }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Address2</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->address2 }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Facebook Account</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->fb_account }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Role</td>
+                                    <td>Nid Image</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td>{{ $data->nid_image }}</td>
                                 </tr>
+                            </tbody>
                             </table>
                         </div>
                         {{-- <div class="col-md-2"></div> --}}

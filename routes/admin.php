@@ -511,7 +511,7 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
     Route::controller(ElectricianController::class)->middleware(['role:Super Admin|Admin'])->group(function () {
         Route::prefix('/electrician')->group(function(){
             Route::get('', 'admin_electrician')->name('backend.electrician');
-            Route::get('/profile/{slug}', 'admin_view')->name('backend.electrician.profile');
+            Route::get('/profile/{slug}', 'admin_view')->name('admin.electrician.profile');
             Route::get('/category', 'category_index')->name('backend.electrician.category');
             Route::post('/category', 'category_insert')->name('backend.electrician.insert');
 

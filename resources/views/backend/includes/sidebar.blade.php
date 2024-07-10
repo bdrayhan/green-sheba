@@ -159,8 +159,9 @@
                         </a>
                     </li>
                 @endrole
+                @role('Super Admin|Admin|Manager|User')
                     <li>
-                        <a href="javascript: void(0);" class="waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class='bx bxs-group'></i>
                             <span key="t-invocie">Electrician</span>
                         </a>
@@ -175,6 +176,7 @@
                             @endrole
                         </ul>
                     </li>
+                @endrole
                 @role('Super Admin|Admin|Manager')
                     <li>
                         <a href="{{ route('admin.order.pending.invoice.page') }}" class="waves-effect">

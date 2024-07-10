@@ -118,7 +118,7 @@
                                     <td>{{ $data->first_name }}</td>
                                     <td>0123456789</td>
                                     <td>ac electrician</td>
-                                    <td><a href="{{url('backend/electrician/profile/'.$data->slug)}}">view details</a></td>
+                                    <td><a href="{{url('admin/electrician/profile/'.$data->slug)}}">view details</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
