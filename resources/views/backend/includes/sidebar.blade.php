@@ -159,6 +159,24 @@
                         </a>
                     </li>
                 @endrole
+                @role('Super Admin|Admin|Manager|User')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class='bx bxs-group'></i>
+                            <span key="t-invocie">Electrician</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li>
+                                <a href="{{ route('backend.electrician') }}" key="t-user">All Electrician</a>
+                            </li>
+                            @role('Super Admin')
+                                <li>
+                                    <a href="{{ route('backend.electrician.category') }}" key="t-permission">Category</a>
+                                </li>
+                            @endrole
+                        </ul>
+                    </li>
+                @endrole
                 @role('Super Admin|Admin|Manager')
                     <li>
                         <a href="{{ route('admin.order.pending.invoice.page') }}" class="waves-effect">

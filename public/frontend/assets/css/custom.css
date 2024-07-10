@@ -166,3 +166,9 @@
   }
   
   /* customer dashboard part end */
+
+
+  .has-error .invalid-feedback{
+    display: block;
+    color: red;
+  }

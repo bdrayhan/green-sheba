@@ -36,6 +36,7 @@ use App\Http\Controllers\Backend\StockController;
 use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Frontend\ElectricianController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -507,6 +508,24 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
         Route::get('/user-report', 'userReport')->name('admin.user.report');
         Route::post('/user-report', 'userReportDate')->name('admin.user.report.date');
     });
+    Route::controller(ElectricianController::class)->middleware(['role:Super Admin|Admin'])->group(function () {
+        Route::prefix('/electrician')->group(function(){
+            Route::get('', 'admin_electrician')->name('backend.electrician');
+            Route::get('/profile/{slug}', 'admin_view')->name('admin.electrician.profile');
+            Route::get('/category', 'category_index')->name('backend.electrician.category');
+            Route::post('/category', 'category_insert')->name('backend.electrician.insert');
+
+        });
+    });
+
+    // Route::controller(ElectricianController::class)->group(function () {
+    //     Route::prefix('/electrician')->group(function(){
+    //         Route::get('', 'admin_electrician')->name('backend.electrician');
+    //         Route::get('/profile/{slug}', 'admin_view')->name('backend.electrician.profile');
+    //     });
+    // });
+
+    
 
 
     // <-- --------------- RECYCLE BIN ROUTE LIST ---------------- -->

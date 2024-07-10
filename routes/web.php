@@ -111,7 +111,7 @@ Route::controller(ElectricianController::class)->group(function () {
         // Route::post('restore', 'restore');
         // Route::post('delete', 'delete');
         // Route::post('/store-data','store')->name('store.data');
-        Route::get('/profile', 'profile')->name('electrician.profile');
+        Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
     });
 });
 Route::get('/search',[ElectricianController::class,'search']);
