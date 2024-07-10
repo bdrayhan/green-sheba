@@ -109,7 +109,7 @@ Route::controller(ElectricianController::class)->group(function () {
         // Route::get('edit/{slug}','edit');
         // Route::post('softdelete', 'softdelete');
         // Route::post('restore', 'restore');
-        // Route::post('delete', 'delete');
+        // Route::post('delete/test', 'delete');
         // Route::post('/store-data','store')->name('store.data');
         Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
     });

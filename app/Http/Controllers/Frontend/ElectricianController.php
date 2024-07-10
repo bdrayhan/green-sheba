@@ -95,7 +95,7 @@ class ElectricianController extends Controller
         $divisions=Division::orderBy('id' , 'DESC')->get();
         return view('frontend.pages.electrician.register',compact('divisions'));
     }
-
+ 
     public function profile($slug){
         $data=Electrician::where('status',1)->where('slug',$slug)->firstOrFail();
         return view('frontend.pages.electrician.profile',compact('data'));
