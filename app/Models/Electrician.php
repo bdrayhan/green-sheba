@@ -14,13 +14,13 @@ class Electrician extends Model{
         return $this->belongsTo('App\Models\ElectricianCategory','electrician_category','id');
     }
     public function division(){
-        return $this->belongsTo('App\Models\Division','address1','id');
+        return $this->belongsTo('App\Models\Division','division_id','id');
     }
     public function district(){
-        return $this->belongsTo('App\Models\District','address1','id');
+        return $this->belongsTo('App\Models\District','district_id','id');
     }
     public function upazila(){
-        return $this->belongsTo('App\Models\Upazila','address1','id');
+        return $this->belongsTo('App\Models\Upazila','upazila_id','id');
     }
     
 }

@@ -105,7 +105,7 @@
                                         <td>{{ $data->phone }}</td>
                                         <td>{{ $data->electrician->name }}</td>
                                         <td>
-                                            {{ $data->division->name }},
+                                            {{ $data->division->name}},
                                             {{ $data->district->name }},
                                             {{ $data->upazila->name }}
                                         </td>

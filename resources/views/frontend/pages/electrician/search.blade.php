@@ -6,8 +6,8 @@
         $division=$_GET['division'];
         $district=$_GET['district'];
         $upazila=$_GET['upazila'];
-        $all=App\Models\Electrician::where('status',1)->where('division',$division)->where('district',$district)->where('upazila',$upazila)->groupBy('Location');
-        $allelectrician=App\Models\Electrician::where('status',1)->orderBy('id','ASC')->get();
+        $all=App\Models\Electrician::where('status',1)->where('division_id',$division)->where('district_id',$district)->where('upazila_id',$upazila)->get();
+        //$allelectrician=App\Models\Electrician::where('status',1)->orderBy('id','ASC')->get();
     @endphp
 
 
