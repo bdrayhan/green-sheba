@@ -1,5 +1,5 @@
 @extends('backend.layouts.layout')
-@section('admin-title', 'Order Management')
+@section('admin-title', 'Electrician')
 @section('admin_content')
 <div class="row">
     <div class="col-12">

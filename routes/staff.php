@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Staff\StaffOrderController;
+use App\Http\Controllers\Frontend\ElectricianController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,6 +15,23 @@ Route::controller(StaffController::class)->middleware(['auth', 'role:User'])->pr
 
     // User Total Order
     Route::get('/total-orders',  'totalOrder')->name('admin.staff.user.total.orders');
+
+    //electrician
+
+    // Route::controller(ElectricianController::class)->group(function () {
+    //     Route::prefix('/electrician')->group(function(){
+    //         Route::get('', 'index')->name('web.electrician.home');
+    //         Route::get('/registration', 'registration')->name('web.electrician.registration');
+    //         Route::post('/registration', 'insert')->name('web.electrician.insert');
+    //         Route::get('/search','search')->name('web.electrician.search');
+    //         // Route::get('edit/{slug}','edit');
+    //         // Route::post('softdelete', 'softdelete');
+    //         // Route::post('restore', 'restore');
+    //         // Route::post('delete/test', 'delete');
+    //         // Route::post('/store-data','store')->name('store.data');
+    //         Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
+    //     });
+    // });
 
     // Staff Route List
     Route::controller(StaffOrderController::class)->prefix('order')->group(function () {

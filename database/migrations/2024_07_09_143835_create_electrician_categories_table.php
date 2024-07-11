@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('electrician_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('remarks')->nullable();
             $table->string('slug')->unique();
-            $table->string('status')->nullable();
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }

@@ -14,6 +14,10 @@ use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class ElectricianController extends Controller
 {
+
+    public function admin_electrician(){
+        return view('backend.electrician.all');
+    }
     public function category_index(){
         return view('backend.electrician.category');
     }

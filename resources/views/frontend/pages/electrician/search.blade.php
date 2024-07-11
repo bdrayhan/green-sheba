@@ -1,6 +1,16 @@
 @extends('frontend.layouts.app')
 @section('frontend-title', 'Electrician')
 @section('web.content')
+
+    @php
+        $division=$_GET['division'];
+        $district=$_GET['district'];
+        $upazila=$_GET['upazila'];
+        $all=App\Models\Electrician::where('status',1)->where('division',$division)->where('district',$district)->where('upazila',$upazila)->groupBy('Location');
+        $allelectrician=App\Models\Electrician::where('status',1)->orderBy('id','ASC')->get();
+    @endphp
+
+
     {{-- electrician start --}}
     <section class="container">
         <div class="row">
@@ -93,11 +103,9 @@
                                     <th>Manage</th>
                                 </tr>
                             </thead>
-                                @php
-                                    $electricians=App\Models\Electrician::orderBy('id','ASC')->get();
-                                @endphp
+                                
                             <tbody>
-                                @foreach($electricians as $data)
+                                @foreach($all as $data)
                                     <tr>
                                         <td></td>
                                         <td></td>

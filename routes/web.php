@@ -105,7 +105,7 @@ Route::controller(ElectricianController::class)->group(function () {
         Route::get('', 'index')->name('web.electrician.home');
         Route::get('/registration', 'registration')->name('web.electrician.registration');
         Route::post('/registration', 'insert')->name('web.electrician.insert');
-        // Route::get('view/{slug}','view');
+        Route::get('/search','search')->name('web.electrician.search');
         // Route::get('edit/{slug}','edit');
         // Route::post('softdelete', 'softdelete');
         // Route::post('restore', 'restore');
@@ -114,7 +114,7 @@ Route::controller(ElectricianController::class)->group(function () {
         Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
     });
 });
-Route::get('/electrician/search',[ElectricianController::class,'search']);
+
 
 // DATABASE RESET ROUTE
 //Route::get('db-reset', function () {

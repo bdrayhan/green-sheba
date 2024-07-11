@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Analytics;
 use App\Models\BasicSetting;
 use App\Models\ContactInfo;
+use App\Models\ElectricianCategory;
 use App\Models\SMSSetting;
 use App\Models\SocialSetting;
 use App\Models\User;
