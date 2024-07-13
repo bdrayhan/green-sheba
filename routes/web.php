@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\WebsiteController;
 use App\Http\Controllers\Frontend\ElectricianController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Backend\Partner\PartnerController;
+use App\Http\Controllers\Backend\Partner\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // ---------------------------------------------------------------
@@ -116,14 +117,33 @@ Route::controller(ElectricianController::class)->group(function () {
     });
 });
 
+
+
 //partner route
 Route::controller(PartnerController::class)->middleware(['role:Manager'])->group(function () {
     Route::prefix('/partner/product')->group(function(){
-        Route::get('', 'index')->name('backend.partner.product');
-        Route::get('/profile/{slug}', 'admin_view')->name('admin.electrician.profile');
-        Route::get('/category', 'category_index')->name('backend.electrician.category');
-        Route::post('/category', 'category_insert')->name('backend.electrician.insert');
-
+        Route::get('/', 'index')->name('backend.partner.product');
+        Route::get('/create', 'create')->name('backend.partner.product.add');
+        Route::post('/', 'insert')->name('backend.partner.product.insert');
+        Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
+        Route::put('/{slug}', 'update')->name('backend.partner.product.update');
+        Route::get('/delete/{slug}', 'delete')->name('backend.partner.product.delete');
+        Route::get('/status/{slug}', 'status')->name('backend.partner.product.status');
+        Route::get('/gallery/{slug}', 'galleryRemove')->name('backend.partner.gallery.remove');
+        Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
+    });
+});
+Route::controller(OrderController::class)->middleware(['role:Manager'])->group(function () {
+    Route::prefix('/order')->group(function(){
+        Route::get('/create', 'orderCreate')->name('admin.order.create');
+        // Route::get('/create', 'create')->name('backend.partner.product.add');
+        // Route::post('/', 'insert')->name('backend.partner.product.insert');
+        // Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
+        // Route::put('/{slug}', 'update')->name('backend.partner.product.update');
+        // Route::get('/delete/{slug}', 'delete')->name('backend.partner.product.delete');
+        // Route::get('/status/{slug}', 'status')->name('backend.partner.product.status');
+        // Route::get('/gallery/{slug}', 'galleryRemove')->name('backend.partner.gallery.remove');
+        // Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
     });
 });
 

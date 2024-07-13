@@ -25,7 +25,7 @@ class OrderController extends Controller
     {
         $order = Order::with('shipping', 'courier', 'orderDetails')->where('order_slug', $slug)->firstOrFail();
         if (empty($order)) {
-            abort(404);
+            abort(404); 
         }
         $couries = Courier::where('courier_active', 1)->where('courier_status', 1)->get();
         return view('backend.order.single', compact('order', 'couries'));

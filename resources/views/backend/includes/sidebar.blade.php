@@ -91,7 +91,7 @@
                         </ul>
                     </li>
                 @endrole
-                @role('Super Admin|Admin|Manager')
+                @role('Super Admin|Admin')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-cart-alt"></i>
@@ -116,6 +116,23 @@
                             <li>
                                 <a href="{{ route('admin.product.size.index') }}" key="t-product-size">Size</a>
                             </li>
+                        </ul>
+                    </li>
+                @endrole
+                @role('Manager')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bx-cart-alt"></i>
+                            <span key="t-products">Products</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li>
+                                <a href="{{ route('backend.partner.product.add') }}" key="t-new-product">Add New Product</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('backend.partner.product') }}" key="t-all-product">All Products</a>
+                            </li>
+                            
                         </ul>
                     </li>
                 @endrole
@@ -146,7 +163,7 @@
                         </a>
                     </li>
                 @endrole
-                @role('Super Admin|Admin|Manager')
+                @role('Super Admin|Admin')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bxs-truck"></i>
@@ -162,6 +179,29 @@
                             <li>
                                 <a href="{{ route('admin.courier.zone.index') }}" key="t-courier-zone">Zone</a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.courier.order.show', 1) }}" key="t-courier-return">Courier
+                                    Return</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endrole
+                @role('Manager')
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bxs-truck"></i>
+                            <span key="t-courier">Courier</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li>
+                                <a href="{{ route('admin.courier.index') }}" key="t-courier">Courier</a>
+                            </li>
+                            {{-- <li>
+                                <a href="{{ route('admin.courier.city.index') }}" key="t-courier-city">City</a>
+                            </li> --}}
+                            {{-- <li>
+                                <a href="{{ route('admin.courier.zone.index') }}" key="t-courier-zone">Zone</a>
+                            </li> --}}
                             <li>
                                 <a href="{{ route('admin.courier.order.show', 1) }}" key="t-courier-return">Courier
                                     Return</a>
@@ -187,7 +227,15 @@
                         </ul>
                     </li>
                 @endrole
-                @role('Super Admin|Admin|Manager')
+                @role('Super Admin|Admin')
+                    <li>
+                        <a href="{{ route('admin.status.order.list', 1) }}" class="waves-effect">
+                            <i class="bx bx-shopping-bag"></i>
+                            <span key="t-invocie">Order</span>
+                        </a>
+                    </li>
+                @endrole
+                @role('Manager')
                     <li>
                         <a href="{{ route('admin.status.order.list', 1) }}" class="waves-effect">
                             <i class="bx bx-shopping-bag"></i>

@@ -24,7 +24,7 @@ trait OrderTrait {
     public function orderProduct(Request $request){
         // Get Products
         if (isset($request['q'])) {
-          $products = Product::query()->where('product_name', 'like', '%' . $request['q'] . '%')->get();
+            $products = Product::query()->where('product_name', 'like', '%' . $request['q'] . '%')->get();
         } else {
             $products = Product::all();
         }

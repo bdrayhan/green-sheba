@@ -91,10 +91,10 @@
                                                 <i class="mdi mdi-chevron-down"></i>
                                             </button>
                                             <div class="dropdown-menu" style="">
-                                                <a class="dropdown-item" href="{{ route('admin.product.edit', $row->product_slug) }}">
+                                                <a class="dropdown-item" href="{{ route('backend.partner.product.edit', $row->product_slug) }}">
                                                     <i class="bx bx-edit align-middle me-2"></i> Edit
                                                 </a>
-                                                <a id="delete" class="dropdown-item" href="{{ route('admin.product.delete', $row->product_slug) }}">
+                                                <a id="delete" class="dropdown-item" href="{{ route('backend.partner.product.delete', $row->product_slug) }}">
                                                     <i class="bx bx-trash-alt align-middle me-2"></i> Delete
                                                 </a>
                                                 <a href="{{ route('admin.product.status', $row->product_slug) }}"

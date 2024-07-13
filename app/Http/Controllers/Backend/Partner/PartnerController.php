@@ -16,13 +16,15 @@ use Illuminate\Http\RedirectResponse;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class PartnerController extends Controller
 {
 
-    public function index()
+    public function index() 
     {
-        $products = Product::orderBy('created_at', 'DESC')->get();
+        $id=Auth::user()->id;
+        $products = Product::where('user_id',$id)->orderBy('created_at', 'DESC')->get();
         return view('partner.product.index', compact('products'));
     }
 
@@ -34,7 +36,7 @@ class PartnerController extends Controller
         $data['sizes'] = ProductSize::orderby('size_name', 'ASC')->get();
         $data['colors'] = ProductColor::orderby('color_name', 'ASC')->get();
         $data['sizes'] = ProductSize::orderby('size_name', 'ASC')->get();
-        return view('backend.product.create', $data);
+        return view('partner.product.add', $data);
     }
 
     public function insert(Request $request)
@@ -62,6 +64,7 @@ class PartnerController extends Controller
             $product_thumbnail = 'media/product/thumbnail/' . $image_name;
         }
         $product = new Product();
+        $product->user_id = Auth::user()->id;
         $product->product_name = $request->product_name;
         $product->product_url = Str::slug($request->product_url,'-');
         $product->product_code = $request->product_code;
@@ -139,7 +142,7 @@ class PartnerController extends Controller
         $data['tags'] = Tag::orderby('tag_name', 'ASC')->get();
         $data['sizes'] = ProductSize::orderby('size_name', 'ASC')->get();
         $data['colors'] = ProductColor::orderby('color_name', 'ASC')->get();
-        return view('backend.product.edit', $data);
+        return view('partner.product.edit', $data);
     }
 
     public function update(Request $request, $slug)
@@ -220,7 +223,7 @@ class PartnerController extends Controller
             'message' => 'Product Updated!',
             'alert-type' => 'success',
         );
-        return redirect()->route('admin.product.index')->with($notification);
+        return redirect()->route('backend.partner.product')->with($notification);
     }
 
     public function delete(Product $product, $slug)

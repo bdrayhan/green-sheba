@@ -6,7 +6,7 @@
         $division=$_GET['division'];
         $district=$_GET['district'];
         $upazila=$_GET['upazila'];
-        $all=App\Models\Electrician::where('status',1)->where('division',$division)->where('district',$district)->where('upazila',$upazila)->orderBy('first_name','ASC')->get();
+        $all=App\Models\Electrician::where('status',1)->where('division_id',$division)->where('district_id',$district)->where('upazila_id',$upazila)->orderBy('first_name','ASC')->get();
         //$allelectrician=App\Models\Electrician::where('status',1)->orderBy('id','ASC')->get();
     @endphp
 
