@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as Image; 
 
 class PartnerController extends Controller
 {
