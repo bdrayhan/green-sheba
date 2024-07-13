@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WebsiteController;
 use App\Http\Controllers\Frontend\ElectricianController;
 use App\Http\Controllers\Frontend\RegisterController;
+use App\Http\Controllers\Backend\Partner\PartnerController;
 use Illuminate\Support\Facades\Route;
 
 // ---------------------------------------------------------------
@@ -114,6 +115,31 @@ Route::controller(ElectricianController::class)->group(function () {
         Route::get('/profile/{slug}', 'profile')->name('electrician.profile');
     });
 });
+
+//partner route
+Route::controller(PartnerController::class)->middleware(['role:Manager'])->group(function () {
+    Route::prefix('/partner/product')->group(function(){
+        Route::get('', 'index')->name('backend.partner.product');
+        Route::get('/profile/{slug}', 'admin_view')->name('admin.electrician.profile');
+        Route::get('/category', 'category_index')->name('backend.electrician.category');
+        Route::post('/category', 'category_insert')->name('backend.electrician.insert');
+
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // DATABASE RESET ROUTE

@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('nid_number')->unique();
             $table->string('electrician_category')->nullable();
-            $table->string('address1')->nullable();
+            $table->integer('division_id')->nullable();
+            $table->integer('district_id')->nullable();
+            $table->integer('upazila_id')->nullable();
             $table->string('address2')->nullable();
             $table->string('fb_account')->nullable();
             $table->string('nid_image')->nullable();
