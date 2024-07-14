@@ -17,9 +17,40 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\Partner;
 
 class PartnerController extends Controller
 {
+
+    public function registration_index(){
+        return view('partner.profile.index');
+    }
+    public function registration(Request $request){
+
+        $request->validate([
+            
+        ]);
+
+        $slug='P'.uniqid(11);
+        $insert=Partner::insert([
+            'partner_name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'date_of_birth'=>$request->date_of_birth,
+            'nid'=>$request->nid_number,
+            'address'=>$request->address,
+            'partner_slug'=>$slug,
+        ]);
+        if($insert){
+            Session::flash('success','Successfully! Registration Partner');
+            return redirect('partner/registration');
+        }else{
+            Session::flash('error','Opps! failed Please try again');
+            return redirect('partner/registration');
+        }
+
+    }
 
     public function index() 
     {

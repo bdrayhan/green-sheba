@@ -247,7 +247,13 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
 
     // <-- --------------- PARTNER ROUTE LIST ---------------- -->
     Route::controller(PartnerController::class)->middleware(['role:Super Admin|Admin|Manager'])->prefix('partner')->group(function () {
-        Route::get('/', 'index')->name('admin.partner.index');
+        //request partner
+        Route::get('/request', 'request_partner')->name('admin.partner.request');
+        Route::get('/request/profile/{slug}', 'request_profile')->name('admin.partner.request.profile');
+        Route::get('/request/profile/edit/{slug}', 'request_edit')->name('admin.partner.request.edit');
+        Route::get('/', 'index')->name('admin.partner.all');
+        Route::get('/profile/{slug}', 'profile')->name('admin.partner.profile');
+        Route::get('/edit/{slug}', 'edit')->name('admin.partner.edit');
         Route::post('/', 'store')->name('admin.partner.store');
         Route::put('/{slug}', 'update')->name('admin.partner.update');
         Route::get('/{slug}', 'destroy')->name('admin.partner.destroy');

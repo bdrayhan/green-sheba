@@ -16,11 +16,37 @@ class PartnerController extends Controller
     {
         return $this->middleware('auth');
     }
+        //partner request 
+    public function request_partner()
+    {
+        $partners = Partner::where('partner_status',0)->orderBy('partner_sorting', 'ASC')->get();
+        return view('backend.partner.request.index', compact('partners'));
+    }
+
+    public function request_profile($slug){
+        $data = Partner::where('partner_status',0)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.profile', compact('data'));
+    }
+
+    public function request_edit($slug){
+        $data = Partner::where('partner_status',0)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.request.edit', compact('data'));
+    }
 
     public function index()
     {
-        $partners = Partner::orderBy('partner_sorting', 'ASC')->get();
+        $partners = Partner::where('partner_status',1)->orderBy('partner_sorting', 'ASC')->get();
         return view('backend.partner.index', compact('partners'));
+    }
+    public function profile($slug)
+    {
+        $data = Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.profile', compact('data'));
+    }
+    public function edit($slug)
+    {
+        $data = Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.request.edit', compact('data'));
     }
 
     public function create()
@@ -69,11 +95,6 @@ class PartnerController extends Controller
     }
 
     public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
     {
         //
     }

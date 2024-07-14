@@ -14,7 +14,7 @@
                     </h4>
                 </div>
                 <div class="card-body px-2">
-                    <table id="datatable" class="table table-bordered text-center dt-responsive wrap w-100 table-check">
+                    <table id="datatable" class="table text-center table-bordered dt-responsive wrap w-100 table-check">
                         <thead>
                             <tr>
                                 <th style="width: 20px;">
@@ -72,10 +72,10 @@
                                     </td>
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-primary"
-                                            href="{{ route('admin.partner.profile', $row->partner_slug) }}">
+                                            href="{{ route('admin.partner.request.profile', $row->partner_slug) }}">
                                             <i class='bx bxs-user-detail'></i> </a>
-                                            <a class="btn btn-sm btn-primary"
-                                            href="{{ route('admin.partner.edit', $row->partner_slug) }}">
+                                        <a class="btn btn-sm btn-primary"
+                                            href="{{ route('admin.partner.request.edit', $row->partner_slug) }}">
                                             <i class="bx bxs-pencil"></i> </a>
                                         <a id="delete" class="btn btn-sm btn-danger"
                                             href="{{ route('admin.partner.destroy', $row->partner_slug) }}">

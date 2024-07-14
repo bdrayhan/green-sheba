@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
+            $table->string('partner_name',100)->nullable();
+            $table->string('phone',30)->nullable();
+            $table->string('email',100)->nullable();
+            $table->string('date_of_birth',100)->nullable();
+            $table->integer('nid',50)->uniqid();
+            $table->string('address',100)->nullable();
+            $table->string('nid_img',50)->nullable();
+            $table->string('partner_img',50)->nullable();
             $table->string('partner_title',100)->nullable();
             $table->string('partner_url',190)->nullable();
             $table->string('partner_logo')->nullable();
@@ -22,7 +30,7 @@ return new class extends Migration
             $table->integer('partner_creator')->nullable();
             $table->integer('partner_editor')->nullable();
             $table->string('partner_slug',40)->nullable();
-            $table->integer('partner_status')->default(1);
+            $table->integer('partner_status')->default(0);
             $table->timestamps();
         });
     }

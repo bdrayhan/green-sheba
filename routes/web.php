@@ -117,8 +117,6 @@ Route::controller(ElectricianController::class)->group(function () {
     });
 });
 
-
-
 //partner route
 Route::controller(PartnerController::class)->middleware(['role:Manager'])->group(function () {
     Route::prefix('/partner/product')->group(function(){
@@ -133,9 +131,12 @@ Route::controller(PartnerController::class)->middleware(['role:Manager'])->group
         Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
     });
 });
-Route::controller(OrderController::class)->middleware(['role:Manager'])->group(function () {
-    Route::prefix('/order')->group(function(){
-        Route::get('/create', 'orderCreate')->name('admin.order.create');
+
+
+Route::controller(PartnerController::class)->group(function () {
+    Route::prefix('/partner/registration')->group(function(){
+        Route::get('/', 'registration_index')->name('partner.registration.index');
+        Route::post('/', 'registration')->name('partner.registration');
         // Route::get('/create', 'create')->name('backend.partner.product.add');
         // Route::post('/', 'insert')->name('backend.partner.product.insert');
         // Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');

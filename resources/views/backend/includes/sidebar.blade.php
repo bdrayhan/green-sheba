@@ -37,13 +37,29 @@
                     </li>
                 @endrole
                 @role('Super Admin|Admin')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bxs-user-pin"></i>
+                        <span key="t-products">Partner</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="{{ route('admin.partner.all') }}" key="t-new-product">All Partner</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.partner.request') }}" key="t-all-product">Request Partner</a>
+                        </li>
+                    </ul>
+                </li>
+            @endrole
+                {{-- @role('Super Admin|Admin')
                     <li>
-                        <a href="{{ route('admin.partner.index') }}" class="waves-effect">
+                        <a href="{{ route('admin.partner.request') }}" class="waves-effect">
                             <i class="bx bxs-user-pin"></i>
                             <span key="t-customer">Partner</span>
                         </a>
                     </li>
-                @endrole
+                @endrole --}}
                 @role('Super Admin|Admin')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -91,34 +107,7 @@
                         </ul>
                     </li>
                 @endrole
-                @role('Super Admin|Admin')
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-cart-alt"></i>
-                            <span key="t-products">Products</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="true">
-                            <li>
-                                <a href="{{ route('admin.product.create') }}" key="t-new-product">Add New Product</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('backend.partner.product') }}" key="t-all-product">All Products</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.product.category.index') }}" key="t-product-category">Category</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.feature.category.index') }}" key="t-feature-category">Feature Category</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.product.color.index') }}" key="t-product-color">Color</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.product.size.index') }}" key="t-product-size">Size</a>
-                            </li>
-                        </ul>
-                    </li>
-                @endrole
+
                 @role('Manager')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">

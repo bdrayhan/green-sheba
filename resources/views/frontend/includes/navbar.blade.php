@@ -194,6 +194,11 @@
                                 Electrician
                             </a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="{{route('partner.registration.index')}}">
+                                Partner
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
