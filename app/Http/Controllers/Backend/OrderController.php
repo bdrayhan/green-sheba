@@ -60,6 +60,12 @@ class OrderController extends Controller
             $order->courier_id = $request->courier_id;
         }
 
+        //discount amount 
+        $update=OrderDetail::where("product_id")->update([
+            'discount_price'=>$request->discount_amount,
+        ]);
+
+
         // Advance Payment amount
         if ($request->paying_amount > totalOrderAmount($order->id)) {
             $notification = array(
@@ -74,6 +80,8 @@ class OrderController extends Controller
                 $order->paying_amount = $request->paying_amount;
             }
         }
+
+
         $order->store_notes = $request->store_note;
         $order->save();
 

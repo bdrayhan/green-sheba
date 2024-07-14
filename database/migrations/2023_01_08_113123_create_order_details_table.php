@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_size')->nullable();
             $table->integer('product_quantity')->nullable();
             $table->integer('single_price')->nullable();
+            $table->integer('discount_price')->nullable();
             $table->integer('total_price')->nullable();
             $table->timestamps();
 

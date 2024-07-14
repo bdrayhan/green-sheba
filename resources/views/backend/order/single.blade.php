@@ -84,6 +84,7 @@
                                                 <th>Size</th>
                                                 <th>Quantity</th>
                                                 <th>Price</th>
+                                                <th>Discount Price</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -115,6 +116,18 @@
                                                         </div>
                                                     </td>
                                                     <td>৳{{ number_format(productUnitPrice($detail->product_id)) }} </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <div class="input-group-text" id="btnGroupAddon">
+                                                                <select class="form-select" name="discount" aria-label="Default select example">
+                                                                    <option value="1"> ৳</option>
+                                                                    <option value="2"> %</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="discount_amount" placeholder="Enter Discount Amount" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                                        </div>
+                                                    </td>
                                                     <td>
                                                         <a id="delete"
                                                             href="{{ route('admin.order.product.delete', $detail->id) }}"

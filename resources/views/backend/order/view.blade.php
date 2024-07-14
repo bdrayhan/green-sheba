@@ -236,10 +236,11 @@
                     <table class="table table-responsive wrap table-bordered border-secondary border-soft border-opacity-50">
                         <thead>
                             <tr>
-                                <th width="60%">Product</th>
+                                <th width="50%">Product</th>
                                 <th width="10%">SKU</th>
                                 <th width="10%" class="text-end">Quantity</th>
                                 <th width="10%" class="text-end">Unit Price</th>
+                                <th width="10%" class="text-end">Discount Price</th>
                                 <th width="10%" class="text-end">Total</th>
                             </tr>
                         </thead>
@@ -258,26 +259,59 @@
                                 <td >{{$detail->product_code ?? 'Not Available'}}</td>
                                 <td class="text-end">{{ $detail->product_quantity }}</td>
                                 <td class="text-end">৳{{ $singlePrice = productUnitPrice($detail->product_id) }}</td>
+                                <td class="text-end">
+                                    <div class="input-group">
+                                        <div class="input-group-text" id="btnGroupAddon">
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected value="1">Amount %</option>
+                                                <option value="2">Amount ৳</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Enter Discount Amount" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                    </div>
+
+                                </td>
                                 <td class="text-end">৳{{ $detail->product_quantity *  $singlePrice }}</td>
                             </tr>
                             @endforeach
                             <tr class="text-end">
                                 <td colspan="4">Sub-Total</td>
+                                <td>৳ discount</td>
                                 <td>৳{{ orderSubtotal($order->id) }}</td>
                             </tr>
                             <tr class="text-end">
                                 <td colspan="4"> {{ $order->shipping->shipping_area === 'outside-dhaka' ? 'Delivery Outside Dhaka' : 'Delivery Inside Dhaka' }}</td>
+                                <td>৳ discount</td>
                                 <td>৳{{ $order->shipping_charge }}</td>
                             </tr>
                             @if ($order->paying_amount)
                                 <tr class="text-end">
                                     <td colspan="4">Advance Paying</td>
+                                    <td>৳ discount</td>
                                     <td>৳{{ $order->paying_amount }}</td>
                                 </tr>
                             @endif
                             <tr class="text-end">
                                 <td colspan="4">Due Amount</td>
+                                <td>৳ discount</td>
                                 <td>৳{{ totalOrderDue($order->id) }}</td>
+                            </tr>
+                            <tr class="text-end">
+                                <td colspan="4">Discount</td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-text" id="btnGroupAddon">
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>Amount %</option>
+                                                <option value="1">Amount ৳</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Enter Discount Amount" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                    </div>
+                                </td>
+                                <td>৳ discount</td>
                             </tr>
                         </tbody>
                     </table>
