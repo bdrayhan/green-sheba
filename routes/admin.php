@@ -250,10 +250,14 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
         //request partner
         Route::get('/request', 'request_partner')->name('admin.partner.request');
         Route::get('/request/profile/{slug}', 'request_profile')->name('admin.partner.request.profile');
-        Route::get('/request/profile/edit/{slug}', 'request_edit')->name('admin.partner.request.edit');
+        Route::get('/request/profile/update/{slug}', 'request_edit')->name('admin.partner.request.edit');
+        Route::post('/request/profile/update', 'request_update')->name('admin.partner.request.update');
+        
+        //partner
         Route::get('/', 'index')->name('admin.partner.all');
         Route::get('/profile/{slug}', 'profile')->name('admin.partner.profile');
         Route::get('/edit/{slug}', 'edit')->name('admin.partner.edit');
+        Route::post('/profile/update', 'partner_update')->name('admin.partner.profile.update');
         Route::post('/', 'store')->name('admin.partner.store');
         Route::put('/{slug}', 'update')->name('admin.partner.update');
         Route::get('/{slug}', 'destroy')->name('admin.partner.destroy');
@@ -517,10 +521,11 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
     Route::controller(ElectricianController::class)->middleware(['role:Super Admin|Admin'])->group(function () {
         Route::prefix('/electrician')->group(function(){
             Route::get('', 'admin_electrician')->name('backend.electrician');
+            Route::get('/search', 'admin_search')->name('backend.electrician.search');
             Route::get('/profile/{slug}', 'admin_view')->name('admin.electrician.profile');
             Route::get('/category', 'category_index')->name('backend.electrician.category');
             Route::post('/category', 'category_insert')->name('backend.electrician.insert');
-
+            Route::get('/category/delete/{slug}', 'delete')->name('backend.electrician.delete');
         });
     });
 

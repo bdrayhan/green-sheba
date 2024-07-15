@@ -1,6 +1,16 @@
 @extends('backend.layouts.layout')
 @section('admin-title', 'Electrician')
 @section('admin_content')
+
+@php
+        $division=$_GET['division'];
+        $district=$_GET['district'];
+        $upazila=$_GET['upazila'];
+        $all=App\Models\Electrician::where('status',1)->where('division_id',$division)->where('district_id',$district)->where('upazila_id',$upazila)->orderBy('first_name','ASC')->get();
+        //$allelectrician=App\Models\Electrician::where('status',1)->orderBy('id','ASC')->get();
+        // dd($all);
+@endphp
+
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -103,32 +113,30 @@
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                {{-- <th>Category</th> --}}
+                                <th>Category</th>
                                 <th>Location</th>
                                 <th>Manage</th>
                             </tr>
                         </thead>
-                        @php
-                        $electricians=App\Models\Electrician::orderBy('id','ASC')->get();
-                    @endphp
-                <tbody>
-                    @foreach($electricians as $data)
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $data->first_name }}</td>
-                            <td>{{ $data->phone }}</td>
-                            {{-- <td>{{ $data->electrician->name }}</td> --}}
-                            <td>
-                                {{ $data->division->name}},
-                                {{ $data->district->name }},
-                                {{ $data->upazila->name }}
-                            </td>
-                            {{-- <td>active</td> --}} 
-                            <td><a href="{{url('admin/electrician/profile/'.$data->slug)}}">view details</a></td>
-                        </tr>
-                        @endforeach
-                </tbody>
+                        <tbody>
+                            @foreach($all as $data)
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ $data->first_name }}</td>
+                                    <td>{{ $data->phone }}</td>
+                                    <td>{{ $data->electrician_category }}</td>
+                                    <td>{{ $data->electrician->name }}</td>
+                                    <td>
+                                        {{ $data->division->name}},
+                                        {{ $data->district->name }},
+                                        {{ $data->upazila->name }}
+                                    </td>
+                                    {{-- <td>active</td> --}} 
+                                    <td><a href="{{url('electrician/profile/'.$data->slug)}}">view details</a></td>
+                                </tr>
+                                @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -138,3 +146,4 @@
 
 
 @endsection
+

@@ -16,11 +16,22 @@ class ElectricianController extends Controller
 {
 
     public function admin_electrician(){
-        return view('backend.electrician.all');
+        $data=Electrician::where('status',1)->orderBy('id','DESC')->get();
+        return view('backend.electrician.all',compact('data'));
     }
     public function category_index(){
-        return view('backend.electrician.category');
+        $data=ElectricianCategory::where('status',1)->orderBy('id','DESC')->get();
+        return view('backend.electrician.category',compact('data'));
     }
+
+    public function admin_view($slug){
+        $data=Electrician::where("status",1)->where('slug',$slug)->firstOrFail();
+        return view('backend.electrician.view',compact('data'));
+    }
+    public function admin_search(){
+        return view('backend.electrician.search');
+    }
+
     public function category_insert(Request $request){
         $this->validate($request,[
 
@@ -95,14 +106,11 @@ class ElectricianController extends Controller
         }
     }
 
-
-
-
     public function registration(){
         $divisions=Division::orderBy('id' , 'DESC')->get();
         return view('frontend.pages.electrician.register',compact('divisions'));
     }
- 
+
     public function profile($slug){
         $data=Electrician::where('status',1)->where('slug',$slug)->firstOrFail();
         return view('frontend.pages.electrician.profile',compact('data'));
@@ -114,6 +122,25 @@ class ElectricianController extends Controller
 
     public function search(){
         return view('frontend.pages.electrician.search');
+    }
+
+    public function delete($slug){
+
+        $category = ElectricianCategory::where('slug', $slug)->delete();
+        if ($category) {
+            $notification = array(
+                'message' => 'Partner Status Updated!',
+                'alert-type' => 'success',
+            ); // returns Notification,
+            return redirect('admin/electrician/category');
+        } else {
+            $notification = array(
+                'message' => 'Partner Update Failed!',
+                'alert-type' => 'error',
+            ); // returns Notification,
+            return redirect('admin/electrician/cateogry');
+        }
+
     }
 
     // public function search(Request $request){

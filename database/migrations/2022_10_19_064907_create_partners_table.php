@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone',30)->nullable();
             $table->string('email',100)->nullable();
             $table->string('date_of_birth',100)->nullable();
-            $table->integer('nid',50)->uniqid();
+            $table->integer('nid',80)->uniqid();
             $table->string('address',100)->nullable();
             $table->string('nid_img',50)->nullable();
             $table->string('partner_img',50)->nullable();

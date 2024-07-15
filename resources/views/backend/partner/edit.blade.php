@@ -20,7 +20,7 @@
 <section class="container">
     <div class="row">
         <div class="col-12">
-            <form action="{{ route('admin.partner.request.update') }}" method="POST">
+            <form action="{{ route('admin.partner.profile.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="id" value="{{ $data->id }}">
                 <div class="card-body">

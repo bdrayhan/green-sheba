@@ -7,6 +7,7 @@ use App\Models\Partner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image; 
 
@@ -46,12 +47,62 @@ class PartnerController extends Controller
     public function edit($slug)
     {
         $data = Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
-        return view('backend.partner.request.edit', compact('data'));
+        return view('backend.partner.edit', compact('data'));
     }
 
-    public function create()
+    public function request_update(Request $request)
     {
-        //
+        $id=$request->id;
+        $this->validate($request,[
+
+        ]);
+
+        $slug="P".uniqid(11);
+        $editor=Auth::user()->id;
+        $update=Partner::where('partner_status',0)->where('id',$id)->update([
+            'partner_name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'date_of_birth'=>$request->date_of_birth,
+            'nid'=>$request->nid_number,
+            'address'=>$request->address,
+            'partner_title'=>$request->partner_title,
+            'partner_url'=>$request->partner_url,
+            'partner_slug'=>$slug,
+            'partner_editor'=>$editor,
+        ]);
+
+        if($update){
+            Session::flash('success','Successfully! update partner information');
+            return redirect('admin/partner/request/profile/'.$slug);
+        }
+    }
+    public function partner_update(Request $request)
+    {
+        $id=$request->id;
+        $this->validate($request,[
+
+        ]);
+
+        $slug="P".uniqid(11);
+        $editor=Auth::user()->id;
+        $update=Partner::where('partner_status',1)->where('id',$id)->update([
+            'partner_name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'date_of_birth'=>$request->date_of_birth,
+            'nid'=>$request->nid_number,
+            'address'=>$request->address,
+            'partner_title'=>$request->partner_title,
+            'partner_url'=>$request->partner_url,
+            'partner_slug'=>$slug,
+            'partner_editor'=>$editor,
+        ]);
+
+        if($update){
+            Session::flash('success','Successfully! update partner information');
+            return redirect('admin/partner/profile/'.$slug);
+        }
     }
 
     public function store(Request $request)

@@ -27,25 +27,27 @@
                     </h4>
                 </div>
                 <div class="card-body px-2">
-                    @php
-                        $category=App\Models\ElectricianCategory::where('status',1)->OrderBy('id','DESC')->get();
-                    @endphp
                     <table class="table table-bordered dt-responsive  nowrap w-100">
                         <thead>
                             <tr>
                                 <th>Category Name</th>
                                 <th>Category Remarks</th>
-                                
+                                <th>Manage</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($category as $data)
+                            @foreach ($data as $data)
                                 
                             
                                 <tr>
                                     <td>{{ $data->name }}</td>
                                     <td>{{ $data->remarks }}</td>
-                                    
+                                    <td>
+                                        <a id="delete" class="btn btn-sm btn-danger"
+                                            href="{{ route('backend.electrician.delete', $data->slug) }}">
+                                            <i class="bx bxs-trash-alt"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                         </tbody>
@@ -105,7 +107,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                         </div>
                                 </form>
                             </div>
