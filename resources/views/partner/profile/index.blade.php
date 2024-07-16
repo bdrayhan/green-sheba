@@ -92,7 +92,7 @@
                                 <div class="form-group col-md-8 mb-3 {{ $errors->has('address') ? ' has-error' : '' }}">
                                     <label class="col-form-label col_form_label">Address :</label>
                                     <textarea class="form-control form_control" name="address"
-                                        placeholder="Enter Address" value="{{old('address')}}"></textarea>
+                                        placeholder="Enter Address" value="{{old('address')}}">{{ old('address') }}</textarea>
                                     @if ($errors->has('address'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('address') }}</strong>

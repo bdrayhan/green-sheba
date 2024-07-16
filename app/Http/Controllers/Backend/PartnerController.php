@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Exception;
 use Intervention\Image\ImageManagerStatic as Image; 
 
 class PartnerController extends Controller
@@ -20,7 +24,7 @@ class PartnerController extends Controller
         //partner request 
     public function request_partner()
     {
-        $partners = Partner::where('partner_status',0)->orderBy('partner_sorting', 'ASC')->get();
+        $partners = Partner::where('partner_status',0)->orderBy('id', 'ASC')->get();
         return view('backend.partner.request.index', compact('partners'));
     }
 
@@ -52,11 +56,14 @@ class PartnerController extends Controller
 
     public function request_update(Request $request)
     {
+
+        DB::transaction(function () use ($request) {
         $id=$request->id;
         $this->validate($request,[
-
+            // 'nid'=>'required',
+            // 'email'=>'required',
         ]);
-
+        
         $slug="P".uniqid(11);
         $editor=Auth::user()->id;
         $update=Partner::where('partner_status',0)->where('id',$id)->update([
@@ -71,11 +78,27 @@ class PartnerController extends Controller
             'partner_slug'=>$slug,
             'partner_editor'=>$editor,
         ]);
+        // $user = User::where('id')->firstOrFail();
+        // $user->assignRole($request->user_role);
+
+        $user=User::where('status',1)->where('id',$id)->update([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'status'=>'0',
+            'slug'=>$slug,
+        ]);
 
         if($update){
             Session::flash('success','Successfully! update partner information');
             return redirect('admin/partner/request/profile/'.$slug);
         }
+        if($user){
+            Session::flash('success','Successfully! update partner information');
+            return redirect('admin/partner/request/profile/'.$slug);
+        }
+    });
     }
     public function partner_update(Request $request)
     {

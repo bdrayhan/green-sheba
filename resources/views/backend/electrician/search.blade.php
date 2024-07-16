@@ -126,7 +126,7 @@
                                     <td>{{ $data->first_name }}</td>
                                     <td>{{ $data->phone }}</td>
                                     <td>{{ $data->electrician_category }}</td>
-                                    <td>{{ $data->electrician->name }}</td>
+                                    {{-- <td>{{ $data->electrician->name }}</td> --}}
                                     <td>
                                         {{ $data->division->name}},
                                         {{ $data->district->name }},

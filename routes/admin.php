@@ -518,7 +518,7 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
         Route::get('/user-report', 'userReport')->name('admin.user.report');
         Route::post('/user-report', 'userReportDate')->name('admin.user.report.date');
     });
-    Route::controller(ElectricianController::class)->middleware(['role:Super Admin|Admin'])->group(function () {
+    Route::controller(ElectricianController::class)->middleware(['role:Super Admin|Admin|Manager'])->group(function () {
         Route::prefix('/electrician')->group(function(){
             Route::get('', 'admin_electrician')->name('backend.electrician');
             Route::get('/search', 'admin_search')->name('backend.electrician.search');

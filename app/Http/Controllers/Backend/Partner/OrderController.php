@@ -13,11 +13,5 @@ use App\Models\Product;
 
 class OrderController extends Controller
 {
-    use OrderTrait;
-    public function view($slug)
-    {
-        $order = Order::with('shipping', 'courier', 'orderDetails', 'assign')->where('order_slug', $slug)->firstOrFail();
-        $orderStatus = OrderStatus::whereIn('id', [5, 6, 8, 10, 11, 12])->pluck('id')->toArray();
-        return view('partner.order.view', compact('order', 'orderStatus'));
-    }
+    
 }

@@ -127,6 +127,25 @@
                                 </span>
                             @endif
                         </div>
+                        @php
+                            $roles = Spatie\Permission\Models\Role::whereNotIn('name', ['Super Admin'])->get();
+                        @endphp
+                        <div class="form-group  col-md-8 mb-3 {{ $errors->has('user_role') ? ' has-error' : '' }}">
+                            <label for="updateUserRole">Partner Role</label>
+                            <select name="user_role" id="updateUserRole" class="form-control" required>
+                                <option label="Select Role"></option>
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->name }}">
+                                    {{ $role->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('user_role'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('user_role') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                         <div class="form-group col-md-8 mb-3 {{ $errors->has('partner_logo') ? ' has-error' : '' }}">
                             <div class="row">
                                 <label class="col-form-label col_form_label"> Parner Logo :</label>
@@ -192,6 +211,16 @@
                             @if ($errors->has('image'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('image') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group  col-md-8 mb-3 {{ $errors->has('image') ? ' has-error' : '' }}">
+                            <label for="userPassword">Password</label>
+                            <input id="userPassword" class="form-control" type="password" name="password" placeholder="Enter Password"
+                                value="{{ old('password') }}" required>
+                                @if ($errors->has('nid_image'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('nid_image') }}</strong>
                                 </span>
                             @endif
                         </div>
