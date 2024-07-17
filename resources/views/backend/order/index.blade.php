@@ -242,7 +242,7 @@ $total_order = App\Models\Order::all();
                 </table>
             </div>
 
-            {{-- discount order list --}}
+            {{-- partner order list --}}
             <div class="row mt-5">
                 <div class="col-12">
                     <div class="card">
@@ -308,6 +308,9 @@ $total_order = App\Models\Order::all();
                                         <th class="text-center text-dark">Action</th>
                                     </tr>
                                 </thead>
+                                @php
+                                    $orders=App\Models\Order::where('user_id',3)->orderBy('created_at','DESC')->get();
+                                @endphp
                                 <tbody>
                                     @forelse ($orders as $order)
                                     <form action="#" id="assingUserSubmit" method="POST">

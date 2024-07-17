@@ -24,7 +24,7 @@ class PartnerController extends Controller
         //partner request 
     public function request_partner()
     {
-        $partners = Partner::where('partner_status',0)->orderBy('id', 'ASC')->get();
+        $partners = Partner::where('partner_status',0)->orderBy('partner_name', 'ASC')->get();
         return view('backend.partner.request.index', compact('partners'));
     }
 
@@ -40,7 +40,7 @@ class PartnerController extends Controller
 
     public function index()
     {
-        $partners = Partner::where('partner_status',1)->orderBy('partner_sorting', 'ASC')->get();
+        $partners = Partner::where('partner_status',1)->orderBy('partner_name', 'ASC')->get();
         return view('backend.partner.index', compact('partners'));
     }
     public function profile($slug)
@@ -58,74 +58,105 @@ class PartnerController extends Controller
     {
 
         DB::transaction(function () use ($request) {
-        $id=$request->id;
-        $this->validate($request,[
-            // 'nid'=>'required',
-            // 'email'=>'required',
-        ]);
+            $id=$request->id;
+            $this->validate($request,[
+                // 'nid'=>'required', 
+                // 'email'=>'required',
+            ]);
         
-        $slug="P".uniqid(11);
-        $editor=Auth::user()->id;
-        $update=Partner::where('partner_status',0)->where('id',$id)->update([
-            'partner_name'=>$request->name,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'date_of_birth'=>$request->date_of_birth,
-            'nid'=>$request->nid_number,
-            'address'=>$request->address,
-            'partner_title'=>$request->partner_title,
-            'partner_url'=>$request->partner_url,
-            'partner_slug'=>$slug,
-            'partner_editor'=>$editor,
-        ]);
-        // $user = User::where('id')->firstOrFail();
-        // $user->assignRole($request->user_role);
+            $slug="P".uniqid(11);
+            $editor=Auth::user()->id;
+            
 
-        $user=User::where('status',1)->where('id',$id)->update([
-            'name'=>$request->name,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'status'=>'0',
-            'slug'=>$slug,
-        ]);
+            try {
+                $user = User::where('id', $id)->firstOrFail();
+                $data = array();
+                $data['name'] = $request->name;
+                $data['phone'] = $request->phone;
+                $data['email'] = $request->email;
+                $data['editor'] = Auth::user()->id;
 
-        if($update){
-            Session::flash('success','Successfully! update partner information');
-            return redirect('admin/partner/request/profile/'.$slug);
-        }
-        if($user){
-            Session::flash('success','Successfully! update partner information');
-            return redirect('admin/partner/request/profile/'.$slug);
-        }
-    });
+                $user->update($data);
+                $user->assignRole('Manager');
+                // return response()->json([
+                //     'status' => 'success',
+                //     'message' => "User Update Successfully!",
+                // ]);
+            } catch ( Exception $e) {
+                // return response()->json([
+                //     'status' => 'error',
+                //     'message' => $e->getMessage(),
+                // ]);
+            }
+
+            $update=Partner::where('partner_status',0)->where('id',$id)->update([
+                'partner_name'=>$request->name,
+                'phone'=>$request->phone,
+                'email'=>$request->email,
+                'date_of_birth'=>$request->date_of_birth,
+                'nid'=>$request->nid_number,
+                'address'=>$request->address,
+                'partner_title'=>$request->partner_title,
+                'partner_url'=>$request->partner_url,
+                'partner_slug'=>$slug,
+                'partner_editor'=>$editor,
+            ]);
+
+            if($update){
+                Session::flash('success','Successfully! update partner information');
+                return redirect('admin/partner/request/profile/'.$slug);
+            }
+        });
     }
     public function partner_update(Request $request)
     {
-        $id=$request->id;
-        $this->validate($request,[
+        DB::transaction(function () use ($request) {
+            $id=$request->id;
+            $this->validate($request,[
 
-        ]);
+            ]);
 
-        $slug="P".uniqid(11);
-        $editor=Auth::user()->id;
-        $update=Partner::where('partner_status',1)->where('id',$id)->update([
-            'partner_name'=>$request->name,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'date_of_birth'=>$request->date_of_birth,
-            'nid'=>$request->nid_number,
-            'address'=>$request->address,
-            'partner_title'=>$request->partner_title,
-            'partner_url'=>$request->partner_url,
-            'partner_slug'=>$slug,
-            'partner_editor'=>$editor,
-        ]);
+            $slug="P".uniqid(11);
+            $editor=Auth::user()->id;
+            $update=Partner::where('partner_status',1)->where('id',$id)->update([
+                'partner_name'=>$request->name,
+                'phone'=>$request->phone,
+                'email'=>$request->email,
+                'date_of_birth'=>$request->date_of_birth,
+                'nid'=>$request->nid_number,
+                'address'=>$request->address,
+                'partner_title'=>$request->partner_title,
+                'partner_url'=>$request->partner_url,
+                'partner_slug'=>$slug,
+                'partner_editor'=>$editor,
+            ]);
 
-        if($update){
-            Session::flash('success','Successfully! update partner information');
-            return redirect('admin/partner/profile/'.$slug);
-        }
+            try {
+                $user = User::where('id', $id)->firstOrFail();
+                $data = array();
+                $data['name'] = $request->name;
+                $data['phone'] = $request->phone;
+                $data['email'] = $request->email;
+                $data['editor'] = Auth::user()->id;
+
+                $user->update($data);
+                $user->assignRole('Manager');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "User Update Successfully!",
+                ]);
+            } catch ( Exception $e) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                ]);
+            }
+
+            if($update){
+                Session::flash('success','Successfully! update partner information');
+                return redirect('admin/partner/profile/'.$slug);
+            }
+        });
     }
 
     public function store(Request $request)

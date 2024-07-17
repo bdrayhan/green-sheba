@@ -185,9 +185,17 @@
                 @endrole
                 @role('Manager')
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="{{ route('backend.partner.order') }}" class="waves-effect">
                             <i class="bx bx-shopping-bag"></i>
                             <span key="t-invocie">Order</span>
+                        </a>
+                    </li>
+                @endrole
+                @role('Manager')
+                    <li>
+                        <a href="{{ route('backend.partner.commission') }}" class="waves-effect">
+                            <i class='bx bxs-coin' ></i>
+                            <span key="t-invocie">Commission</span>
                         </a>
                     </li>
                 @endrole

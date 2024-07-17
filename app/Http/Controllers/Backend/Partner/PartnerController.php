@@ -53,42 +53,35 @@ class PartnerController extends Controller
                 'partner_slug'=>$slug,
             ]);
 
-            $user=User::insert([
-                'name'=>$request->name,
-                'phone'=>$request->phone,
-                'email'=>$request->email,
-                'password'=>Hash::make('12345678'),
-                'slug'=>$slug,
-            ]);
+            try {
+                $data = array();
+                $data['name'] = $request->name;
+                $data['phone'] = $request->phone;
+                $data['email'] = $request->email;
+                $data['password'] = Hash::make('12345678');
+                $data['slug'] = uniqid();
+                // $data['creator'] = Auth::user()->id;
+    
+                $user = User::create($data);
+                $user->assignRole('Manager');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "User Create Successfully!",
+                ]);
+            } catch ( Exception $e) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                ]);
+            }
 
             if($insert){
                 Session::flash('success','Successfully! Registration Partner');
-                return redirect('partner/registration');
+                return redirect()->back();
             }else{
                 Session::flash('error','Opps! failed Please try again');
-                return redirect('partner/registration');
+                return redirect()->back();
             }
-
-            // try {
-            //     $data = array();
-            //     $data['name'] = $request->name;
-            //     $data['phone'] = $request->phone;
-            //     $data['email'] = $request->email;
-            //     $data['password'] = Hash::make('12345678');
-            //     $data['slug'] = uniqid();
-
-            //     $user = User::create($data);
-            //     $user->assignRole('Manager');
-            //     // return response()->json([
-            //     //     'status' => 'success',
-            //     //     'message' => "User Create Successfully!",
-            //     // ]);
-            // } catch ( Exception $e) {
-            //     // return response()->json([
-            //     //     'status' => 'error',
-            //     //     'message' => $e->getMessage(),
-            //     // ]);
-            // }
         });
     }
 }

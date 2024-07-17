@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -47,6 +48,7 @@ class ProductController extends Controller
             'product_short_details' => 'required',
             'product_thumbnail' => 'required|mimes:png,jpg,jpeg',
             'product_regular_price' => 'required',
+            'product_commission' => 'required',
             'product_quantity' => 'required',
             'product_stock_status' => 'required',
         ]);
@@ -62,6 +64,7 @@ class ProductController extends Controller
             $product_thumbnail = 'media/product/thumbnail/' . $image_name;
         }
         $product = new Product();
+        $product->user_id = Auth::user()->id;
         $product->product_name = $request->product_name;
         $product->product_url = Str::slug($request->product_url,'-');
         $product->product_code = $request->product_code;
@@ -71,6 +74,7 @@ class ProductController extends Controller
         $product->product_quantity = $request->product_quantity;
         $product->product_regular_price = $request->product_regular_price;
         $product->product_discount_price = $request->product_discount_price;
+        $product->product_commission = $request->product_commission;
         $product->product_stock_status = $request->product_stock_status;
         $product->product_active = $request->product_active;
         $product->product_featured = $request->product_featured;
