@@ -10,14 +10,20 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\OrderStatus;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    use OrderTrait;
-    public function view($slug)
-    {
-        $order = Order::with('shipping', 'courier', 'orderDetails', 'assign')->where('order_slug', $slug)->firstOrFail();
-        $orderStatus = OrderStatus::whereIn('id', [5, 6, 8, 10, 11, 12])->pluck('id')->toArray();
-        return view('partner.order.view', compact('order', 'orderStatus'));
+    
+    public function index(){
+        $id=Auth::user()->id;
+        $orders=Order::where('user_id', $id)->orderBy('id','DESC')->get();
+        return view('partner.order.index',compact('orders'));
+
+    }
+    public function view($slug){
+        $id=Auth::user()->id;
+        $order=Order::where('user_id',$id)->where('order_slug',$slug)->firstOrFail();
+        return view('partner.order.view',compact('order'));
     }
 }

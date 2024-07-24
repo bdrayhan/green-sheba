@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ElectricianController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Backend\Partner\PartnerController;
 use App\Http\Controllers\Backend\Partner\OrderController;
+use App\Http\Controllers\Backend\Partner\CommissionController;
 use Illuminate\Support\Facades\Route;
 
 // ---------------------------------------------------------------
@@ -117,8 +118,6 @@ Route::controller(ElectricianController::class)->group(function () {
     });
 });
 
-
-
 //partner route
 Route::controller(PartnerController::class)->middleware(['role:Manager'])->group(function () {
     Route::prefix('/partner/product')->group(function(){
@@ -133,9 +132,12 @@ Route::controller(PartnerController::class)->middleware(['role:Manager'])->group
         Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
     });
 });
-Route::controller(OrderController::class)->middleware(['role:Manager'])->group(function () {
-    Route::prefix('/order')->group(function(){
-        Route::get('/create', 'orderCreate')->name('admin.order.create');
+
+
+Route::controller(PartnerController::class)->group(function () {
+    Route::prefix('/partner/registration')->group(function(){
+        Route::get('/', 'registration_index')->name('partner.registration.index');
+        Route::post('/', 'registration')->name('partner.registration');
         // Route::get('/create', 'create')->name('backend.partner.product.add');
         // Route::post('/', 'insert')->name('backend.partner.product.insert');
         // Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
@@ -146,6 +148,40 @@ Route::controller(OrderController::class)->middleware(['role:Manager'])->group(f
         // Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
     });
 });
+
+//order route
+
+Route::controller(OrderController::class)->middleware(['role:Manager'])->group(function () {
+    Route::prefix('/partner/order')->group(function(){
+        Route::get('/', 'index')->name('backend.partner.order');
+        Route::get('/details/{slug}', 'view')->name('backend.partner.order.details');
+        Route::post('/', 'insert')->name('backend.partner.product.insert');
+        Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
+        Route::put('/{slug}', 'update')->name('backend.partner.product.update');
+        Route::get('/delete/{slug}', 'delete')->name('backend.partner.product.delete');
+        Route::get('/status/{slug}', 'status')->name('backend.partner.product.status');
+        Route::get('/gallery/{slug}', 'galleryRemove')->name('backend.partner.gallery.remove');
+        Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
+    });
+});
+
+
+//commission route
+
+Route::controller(CommissionController::class)->middleware(['role:Manager'])->group(function () {
+    Route::prefix('/partner/commission')->group(function(){
+        Route::get('/', 'index')->name('backend.partner.commission');
+        // Route::get('/details/{slug}', 'view')->name('backend.partner.order.details');
+        // Route::post('/', 'insert')->name('backend.partner.product.insert');
+        // Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
+        // Route::put('/{slug}', 'update')->name('backend.partner.product.update');
+        // Route::get('/delete/{slug}', 'delete')->name('backend.partner.product.delete');
+        // Route::get('/status/{slug}', 'status')->name('backend.partner.product.status');
+        // Route::get('/gallery/{slug}', 'galleryRemove')->name('backend.partner.gallery.remove');
+        // Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
+    });
+});
+
 
 
 

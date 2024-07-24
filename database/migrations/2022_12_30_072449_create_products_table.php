@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('product_back_order')->nullable();
             $table->integer('product_regular_price');
             $table->integer('product_discount_price')->nullable();
+            $table->integer('product_commission')->nullable();
             $table->integer('product_quantity')->default(1);
             $table->integer('product_purchase_quantity')->nullable();
             $table->integer('min_quantity')->default(1);

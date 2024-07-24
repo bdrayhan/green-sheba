@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Exception;
 use Intervention\Image\ImageManagerStatic as Image; 
 
 class PartnerController extends Controller
@@ -16,16 +21,142 @@ class PartnerController extends Controller
     {
         return $this->middleware('auth');
     }
+        //partner request 
+    public function request_partner()
+    {
+        $partners = Partner::where('partner_status',0)->orderBy('partner_name', 'ASC')->get();
+        return view('backend.partner.request.index', compact('partners'));
+    }
+
+    public function request_profile($slug){
+        $data = Partner::where('partner_status',0)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.profile', compact('data'));
+    }
+
+    public function request_edit($slug){
+        $data = Partner::where('partner_status',0)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.request.edit', compact('data'));
+    }
 
     public function index()
     {
-        $partners = Partner::orderBy('partner_sorting', 'ASC')->get();
+        $partners = Partner::where('partner_status',1)->orderBy('partner_name', 'ASC')->get();
         return view('backend.partner.index', compact('partners'));
     }
-
-    public function create()
+    public function profile($slug)
     {
-        //
+        $data = Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.profile', compact('data'));
+    }
+    public function edit($slug)
+    {
+        $data = Partner::where('partner_status',1)->where('partner_slug',$slug)->firstOrFail();
+        return view('backend.partner.edit', compact('data'));
+    }
+
+    public function request_update(Request $request)
+    {
+
+        DB::transaction(function () use ($request) {
+            $id=$request->id;
+            $this->validate($request,[
+                // 'nid'=>'required', 
+                // 'email'=>'required',
+            ]);
+        
+            $slug="P".uniqid(11);
+            $editor=Auth::user()->id;
+            
+
+            try {
+                $user = User::where('id', $id)->firstOrFail();
+                $data = array();
+                $data['name'] = $request->name;
+                $data['phone'] = $request->phone;
+                $data['email'] = $request->email;
+                $data['editor'] = Auth::user()->id;
+
+                $user->update($data);
+                $user->assignRole('Manager');
+                // return response()->json([
+                //     'status' => 'success',
+                //     'message' => "User Update Successfully!",
+                // ]);
+            } catch ( Exception $e) {
+                // return response()->json([
+                //     'status' => 'error',
+                //     'message' => $e->getMessage(),
+                // ]);
+            }
+
+            $update=Partner::where('partner_status',0)->where('id',$id)->update([
+                'partner_name'=>$request->name,
+                'phone'=>$request->phone,
+                'email'=>$request->email,
+                'date_of_birth'=>$request->date_of_birth,
+                'nid'=>$request->nid_number,
+                'address'=>$request->address,
+                'partner_title'=>$request->partner_title,
+                'partner_url'=>$request->partner_url,
+                'partner_slug'=>$slug,
+                'partner_editor'=>$editor,
+            ]);
+
+            if($update){
+                Session::flash('success','Successfully! update partner information');
+                return redirect('admin/partner/request/profile/'.$slug);
+            }
+        });
+    }
+    public function partner_update(Request $request)
+    {
+        DB::transaction(function () use ($request) {
+            $id=$request->id;
+            $this->validate($request,[
+
+            ]);
+
+            $slug="P".uniqid(11);
+            $editor=Auth::user()->id;
+            $update=Partner::where('partner_status',1)->where('id',$id)->update([
+                'partner_name'=>$request->name,
+                'phone'=>$request->phone,
+                'email'=>$request->email,
+                'date_of_birth'=>$request->date_of_birth,
+                'nid'=>$request->nid_number,
+                'address'=>$request->address,
+                'partner_title'=>$request->partner_title,
+                'partner_url'=>$request->partner_url,
+                'partner_slug'=>$slug,
+                'partner_editor'=>$editor,
+            ]);
+
+            try {
+                $user = User::where('id', $id)->firstOrFail();
+                $data = array();
+                $data['name'] = $request->name;
+                $data['phone'] = $request->phone;
+                $data['email'] = $request->email;
+                $data['editor'] = Auth::user()->id;
+
+                $user->update($data);
+                $user->assignRole('Manager');
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "User Update Successfully!",
+                ]);
+            } catch ( Exception $e) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                ]);
+            }
+
+            if($update){
+                Session::flash('success','Successfully! update partner information');
+                return redirect('admin/partner/profile/'.$slug);
+            }
+        });
     }
 
     public function store(Request $request)
@@ -69,11 +200,6 @@ class PartnerController extends Controller
     }
 
     public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
     {
         //
     }

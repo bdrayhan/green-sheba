@@ -8,25 +8,9 @@
             <h4 class="mb-sm-0 font-size-18">Order</h4>
 
             <div class="page-title-right">
-{{--                <button class="smsSendButton btn btn-success btn-soft waves-effect waves-light">--}}
-{{--                    <i class="bx bx-mail-send font-size-16 align-middle"></i>--}}
-{{--                </button>--}}
-{{--                @if (in_array($order->order_status, $orderStatus, true))--}}
-{{--                    <a target="_blank" href="{{ route('admin.order.invoice.print',$order->order_slug) }}" class="btn btn-info waves-effect waves-light">--}}
-{{--                        <i class="bx bx-receipt font-size-16 align-middle"></i>--}}
-{{--                    </a>--}}
-{{--                @endif--}}
                 <a target="_blank" href="{{ route('admin.order.invoice.print',$order->order_slug) }}" class="btn btn-info waves-effect waves-light">
                     <i class="bx bx-receipt font-size-16 align-middle"></i>
                 </a>
-                @if (!($order->order_status === 9 || $order->order_status === 10 || $order->order_status === 11))
-                <a href="{{ route('admin.order.show', $order->order_slug) }}" class="btn btn-primary waves-effect waves-light">
-                    <i class="bx bx-edit-alt font-size-16 align-middle"></i>
-                </a>
-                @endif
-{{--                <a href="#" class="btn btn-dark btn-soft waves-effect waves-light">--}}
-{{--                    <i class="bx bxs-share font-size-16 align-middle"></i>--}}
-{{--                </a>--}}
             </div>
         </div>
     </div>
@@ -287,7 +271,7 @@
     </div>
 </div>
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-md-12">
         <div class="card border border-secondary border-soft border-opacity-50">
             <div class="card-header d-flex justify-self-auto">
@@ -299,8 +283,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
+</div> --}}
+{{-- <div class="row">
     <div class="col-md-12">
         <div class="card border border-secondary border-soft border-opacity-50">
             <div class="card-header d-flex justify-self-auto">
@@ -312,8 +296,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
+</div> --}}
+{{-- <div class="row">
     <div class="col-md-12">
         <div class="card border border-secondary border-soft border-opacity-50">
             <div class="card-header d-flex justify-self-auto">
@@ -325,7 +309,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <form action="{{ route('admin.sent.message') }}" id="submitForm" method="POST">
     @csrf
     <input name="customer_name" type="hidden" value="{{ $order->shipping->shipping_name }}">

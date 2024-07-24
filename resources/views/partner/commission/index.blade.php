@@ -4,11 +4,11 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Order</h4>
+            <h4 class="mb-sm-0 font-size-18">Commission</h4>
 
             <div class="page-title-right">
                 <ol class="m-0 breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Order</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Commission</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </div>
@@ -24,12 +24,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header bg-secondary bg-soft d-flex justify-content-between rounded">
-                <h5 class="my-auto">Order List</h5>
-                {{-- <div>
-                    <a href="{{ route('admin.order.create') }}" class="btn btn-sm btn-info">
-                        <i class="mdi mdi-plus-thick fs-5"></i>
+                <h5 class="my-auto">Commission Product List</h5>
+                <div>
+                    <a href="#" class="btn btn-sm btn-info">
+                        1234
                     </a>
-                </div> --}}
+                </div>
             </div> 
 
             <div class="card-body">
@@ -41,12 +41,12 @@
                                     <input class="form-check-input" type="checkbox" id="checkAll">
                                 </div>
                             </th>
-                            <th>Invoice</th>
-                            <th>Name</th>
-                            <th>Total</th>
-                            <th>Courier</th>
-                            <th>Order Date</th>
-                            <th>Order Status</th>
+                            {{-- <th>Invoice</th> --}}
+                            <th>Product Name</th>
+                            <th>Product Amount</th>
+                            {{-- <th>Product Quantity</th> --}}
+                            <th>Commission</th>
+                            {{-- <th>Order Status</th> --}}
                             {{-- @role('Super Admin|Admin|Manager')
                             <th>Assing To</th>
                             @endrole --}}
@@ -64,18 +64,18 @@
                                             value="{{ $order->id }}">
                                     </div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     {{ $order->invoice_no }}
-                                </td>
-                                <td>
+                                </td> --}}
+                                {{-- <td>
                                     {{ $order->shipping->shipping_name }}
-                                </td>
-                                <td class="text-center">৳ {{ number_format(orderSubtotal($order->id)) }}</td>
+                                </td> --}}
                                 <td class="text-center">{{ $order->courier_id ? $order->courier->courier_name : 'Not Assign' }}</td>
+                                <td class="text-center">৳ {{ number_format(orderSubtotal($order->id)) }}</td>
                                 <td>
                                     {{ date('d-F-Y', strtotime($order->order_date)) }}
                                 </td>
-                                <td>{{ $order->status->os_name }}</td>
+                                {{-- <td>{{ $order->status->os_name }}</td> --}}
                                 {{-- @role('Super Admin|Admin|Manager')
                                 <td class="text-center">
                                     {{ $order->assign->name }}
@@ -89,9 +89,9 @@
                                                 <i class="mdi mdi-chevron-down"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('backend.partner.order.details', $order->order_slug) }}">
+                                                {{-- <a class="dropdown-item" href="{{ route('backend.partner.order.details', $order->order_slug) }}">
                                                     <i class="bx bx-show-alt align-middle me-2"></i> Show
-                                                </a>
+                                                </a> --}}
                                                 <a id="delete" class="dropdown-item" href="{{ route('admin.order.delete', $order->order_slug) }}">
                                                     <i class="bx bx-trash-alt align-middle me-2"></i> Delete
                                                 </a>

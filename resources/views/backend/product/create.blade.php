@@ -221,6 +221,12 @@
                                 </div>
                             </div>
                             <div class="row mb-4">
+                                <label for="product_commission" class="col-sm-2 col-form-label text-end font-bold fs-5">Commission <span class="text-danger">*</span> </label>
+                                <div class="col-sm-10">
+                                    <input value="{{ old('product_commission') }}" name="product_commission" type="number" class="form-control" placeholder="Product Commission">
+                                </div>
+                            </div>
+                            <div class="row mb-4">
                                 <label for="product_stock_status" class="col-sm-2 col-form-label text-end font-bold fs-5">Stock Status<span class="text-danger">*</span></label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="product_stock_status" required>

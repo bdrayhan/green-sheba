@@ -24,7 +24,7 @@
                 <div class="card-header card_header">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <h4 class="card-title card_title"> View Electrician Information</h4>
+                            <h4 class="card-title card_title"> View Partner Information</h4>
                         </div>
                         {{-- <div class="col-md-4 text-end">
                             <a href="{{ route('web.electrician.home') }}"
@@ -58,11 +58,12 @@
                             <table
                                 class="table table-bordered table-striped table-hover dt-responsive nowrap custom_view_table"> 
                                 <tbody>
+                                        
+                                    
                                 <tr>
                                     <td>Name</td>
                                     <td>:</td>
-                                    {{-- <td></td> --}}
-                                    <td>{{ $data->first_name . ' ' . $data->last_name }}</td>
+                                    <td>{{ $data->partner_name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Phone No</td>
@@ -82,36 +83,32 @@
                                 <tr>
                                     <td>Nid</td>
                                     <td>:</td>
-                                    <td>{{ $data->nid_number}}</td>
+                                    <td>{{ $data->nid}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Electrician Category</td>
+                                    <td>Address</td>
                                     <td>:</td>
-                                    <td>{{ $data->electrician->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Address1</td>
-                                        <td>:</td>
-                                        <td>
-                                            {{ $data->division->name }},
-                                            {{ $data->district->name }},
-                                            {{ $data->upazila->name }}
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>Address2</td>
-                                    <td>:</td>
-                                    <td>{{ $data->address2 }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Facebook Account</td>
-                                    <td>:</td>
-                                    <td>{{ $data->fb_account }}</td>
+                                    <td>{{ $data->address }}</td>
                                 </tr>
                                 <tr>
                                     <td>Nid Image</td>
                                     <td>:</td>
-                                    <td>{{ $data->nid_image }}</td>
+                                    <td>{{ $data->nid_img }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Partner Title</td>
+                                    <td>:</td>
+                                    <td>{{ $data->partner_title }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Partner Url</td>
+                                    <td>:</td>
+                                    <td>{{ $data->partner_url }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Partner Logo</td>
+                                    <td>:</td>
+                                    <td>{{ $data->partner_logo }}</td>
                                 </tr>
                             </tbody>
                             </table>
