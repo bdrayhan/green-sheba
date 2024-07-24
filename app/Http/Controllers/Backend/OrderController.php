@@ -63,7 +63,7 @@ class OrderController extends Controller
         //discount amount 
         $update=OrderDetail::where("product_id")->update([
             'discount_price'=>$request->discount_amount,
-        ]);
+        ]);  
 
 
         // Advance Payment amount

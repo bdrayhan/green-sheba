@@ -66,7 +66,7 @@ trait OrderTrait {
         }
         $order = new Order();
         $order->invoice_no = uniqueInvoice();
-        $order->user_id = Auth::user()->id;
+        $order->user_id = Auth::user()->id; 
         $order->assign_id = Auth::user()->id;
         $order->courier_id = $request->data['courierID'];
         $order->payment_type = 'Cash On Delivery';
