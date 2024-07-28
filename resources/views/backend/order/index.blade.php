@@ -243,7 +243,7 @@ $total_order = App\Models\Order::all();
             </div>
 
             {{-- partner order list --}}
-            <div class="row mt-5">
+            {{-- <div class="row mt-5">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header bg-secondary bg-soft d-flex justify-content-between rounded">
@@ -281,7 +281,7 @@ $total_order = App\Models\Order::all();
                                 <a href="{{ route('admin.order.create') }}" class="btn btn-sm btn-info">
                                     <i class="mdi mdi-plus-thick fs-5"></i>
                                 </a>
-                            </div> --}}
+                            </div> --}
                         </div>
                         
                         <div class="card-body">
@@ -304,12 +304,13 @@ $total_order = App\Models\Order::all();
                                         @endrole
                                         {{-- @role('Super Admin|Admin|Manager')
                                         <th>Discount Amount</th>
-                                        @endrole --}}
+                                        @endrole --}
                                         <th class="text-center text-dark">Action</th>
                                     </tr>
                                 </thead>
                                 @php
-                                    $orders=App\Models\Order::where('user_id',3)->orderBy('created_at','DESC')->get();
+                                $id=Auth::user()->id;
+                                    $orders=App\Models\Order::where('user_id','DESC')->orderBy('created_at','DESC')->get();
                                 @endphp
                                 <tbody>
                                     @forelse ($orders as $order)
@@ -439,7 +440,7 @@ $total_order = App\Models\Order::all();
                                                     </ul>
                                                 </div>
                                             </td>
-                                            @endrole --}}
+                                            @endrole --}
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                         <button type="button" class="btn btn-sm btn-primary waves-effect dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -472,7 +473,7 @@ $total_order = App\Models\Order::all();
                         
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

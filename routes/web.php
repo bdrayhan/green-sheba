@@ -64,7 +64,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('', 'insert')->name('web.customer.account.register');
 });
 
-// <-- --------------- PRODUCT ROUTE LIST ---------------- -->
+// <-- --------------- PRODUCT ROUTE LIST ---------------- --> 
 Route::controller(WebsiteController::class)->group(function () {
     Route::get('product/{product_url}', 'productView')->name('web.product.view');
 });

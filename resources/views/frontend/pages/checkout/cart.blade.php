@@ -33,7 +33,7 @@
                                     $product = App\Models\Product::where('product_id', $item->id)->firstOrFail();
                                 @endphp
                                 <!-- Form Start -->
-                                <form action="{{ route('web.product.update.to.cart') }}" method="POST">
+                                <form action="{{ route('web.product.update.to.cart') }}" method="POST"> 
                                     <input type="hidden" name="product_id" value="{{ $item->id }}">
                                     <input type="hidden" name="product_image" value="{{ $item->attributes->image }}">
                                     @csrf
@@ -55,6 +55,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- commission --}}
+                                        <input name="product_commission" id="" type="hidden"
+                                                    class="form-control rounded-0" value="{{ $product->product_commission }}"
+                                                    min="1">
                                         <!-- Quantity -->
                                         <div class="col-12 col-lg-1">
                                             <div class="text-center cart-action">

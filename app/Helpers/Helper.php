@@ -66,6 +66,19 @@ function orderSubtotal($order_id): float|int
     }
     return $total;
 }
+class Helper{
+
+function orderComtotal($order_id): float|int
+{
+    $total = 0;
+    $com_details = OrderDetail::where('order_id', $order_id)->get();
+    foreach ($com_details as $com_detail) {
+        $total += $com_detail->product_commission * $com_detail->product_quantity;
+    }
+    return $total;
+}
+
+}
 
 function orderPayAmount($order_id)
 {

@@ -102,7 +102,7 @@ class PartnerController extends Controller
                 'partner_editor'=>$editor,
             ]);
 
-            if($update){
+            if($update && $user){
                 Session::flash('success','Successfully! update partner information');
                 return redirect('admin/partner/request/profile/'.$slug);
             }
@@ -141,18 +141,18 @@ class PartnerController extends Controller
 
                 $user->update($data);
                 $user->assignRole('Manager');
-                return response()->json([
-                    'status' => 'success',
-                    'message' => "User Update Successfully!",
-                ]);
+                // return response()->json([
+                //     'status' => 'success',
+                //     'message' => "User Update Successfully!",
+                // ]);
             } catch ( Exception $e) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                ]);
+                // return response()->json([
+                //     'status' => 'error',
+                //     'message' => $e->getMessage(),
+                // ]);
             }
 
-            if($update){
+            if($update && $user){
                 Session::flash('success','Successfully! update partner information');
                 return redirect('admin/partner/profile/'.$slug);
             }

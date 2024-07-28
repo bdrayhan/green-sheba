@@ -81,7 +81,6 @@ class OrderController extends Controller
             }
         }
 
-
         $order->store_notes = $request->store_note;
         $order->save();
 
@@ -307,6 +306,7 @@ class OrderController extends Controller
         $detail->product_size = $request->size_id;
         $detail->product_code = $product->product_code;
         $detail->product_name = $product->product_name;
+        $detail->product_commission = $product->product_commission;
         if (empty($product->product_discount_price)) {
             $price = $product->product_regular_price;
         }else {

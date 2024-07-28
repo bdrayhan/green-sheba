@@ -105,6 +105,7 @@
                                     <input type="hidden" name="product_name" value="{{ $product->product_name }}">
                                     <input type="hidden" name="product_image" value="{{ $product->product_thumbnail }}">
                                     <input type="hidden" name="product_code" value="{{ $product->product_code }}">
+                                    <input type="hidden" name="product_commission" value="{{ $product->product_commission }}">
                                     <input type="hidden" name="product_price"
                                         value="{{ $product->product_discount_price == null ? $product->product_regular_price : $product->product_discount_price }}">
                                     <div class="mt-3 row row-cols-auto align-items-center">

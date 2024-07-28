@@ -36,6 +36,7 @@
                                     <input id="product_url" type="hidden" name="product_url" value="{{ $product->product_url }}">
                                     <input id="product_image" type="hidden" name="product_image" value="{{ $product->product_thumbnail }}">
                                     <input id="product_code" type="hidden" name="product_code" value="{{ $product->product_code }}">
+                                    <input id="product_commission" type="hidden" name="product_commission" value="{{ $product->product_commission }}">
                                     <input  id="product_price" type="hidden" name="product_price"
                                     value="{{ $product->product_discount_price == null ? $product->product_regular_price : $product->product_discount_price }}">
                                     <input id="product_quantity" type="hidden" name="product_quantity" value="1">

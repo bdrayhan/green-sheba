@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('coupon_amount')->nullable();
             $table->integer('paying_amount')->default(0);
             $table->integer('order_subtotal')->nullable();
-            $table->integer('product_commission')->nullable();
+            $table->integer('total_product_commission')->nullable();
             $table->integer('shipping_charge')->nullable();
             $table->integer('order_vat')->nullable();
             $table->integer('order_total')->nullable();

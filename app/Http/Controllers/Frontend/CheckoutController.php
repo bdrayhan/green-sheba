@@ -87,6 +87,7 @@ class CheckoutController extends Controller
             $data['coupon_amount'] = Session::get('coupon')['discount'];
         }
         $data['order_subtotal'] = Cart::getSubTotal();
+        // $data['product_commission'] = Cart::total();
         $data['shipping_charge'] = $request->area === 'inside-dhaka' ? 80 : 150;
         if ($request->coupon_code) {
             if ($request->area === 'inside-dhaka') {
@@ -125,6 +126,7 @@ class CheckoutController extends Controller
         $id = Shipping::insertGetId($shipping);
 
         $contents = Cart::getContent();
+        // $product_com=Product::where('id')->firstOrFail();
         $details = array();
         foreach ($contents as $row) {
             $details['order_id'] = $order;
@@ -135,6 +137,7 @@ class CheckoutController extends Controller
             $details['product_size'] = $row->attributes->size;
             $details['product_quantity'] = $row->quantity;
             $details['single_price'] = $row->price;
+            $details['product_commission'] = $row->attributes->product_commission;
             $details['total_price'] = $row->price * $row->quantity;
             OrderDetail::create($details);
         }
@@ -176,6 +179,7 @@ class CheckoutController extends Controller
             'name' => $request->product_name,
             'quantity' => $request->product_quantity,
             'price' => $request->product_price,
+            'product_commission' => $request->product_commission,
             'attributes' => array(
                 'image' => $request->product_image,
                 'url' => $request->product_url,

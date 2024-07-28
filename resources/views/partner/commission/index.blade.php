@@ -27,7 +27,7 @@
                 <h5 class="my-auto">Commission Product List</h5>
                 <div>
                     <a href="#" class="btn btn-sm btn-info">
-                        1234
+                        
                     </a>
                 </div>
             </div> 
@@ -41,8 +41,8 @@
                                     <input class="form-check-input" type="checkbox" id="checkAll">
                                 </div>
                             </th>
-                            {{-- <th>Invoice</th> --}}
-                            <th>Product Name</th>
+                            <th>Invoice</th>
+                            {{-- <th>Product Name</th> --}}
                             <th>Product Amount</th>
                             {{-- <th>Product Quantity</th> --}}
                             <th>Commission</th>
@@ -64,16 +64,16 @@
                                             value="{{ $order->id }}">
                                     </div>
                                 </td>
-                                {{-- <td>
+                                <td>
                                     {{ $order->invoice_no }}
-                                </td> --}}
+                                </td>
                                 {{-- <td>
                                     {{ $order->shipping->shipping_name }}
                                 </td> --}}
-                                <td class="text-center">{{ $order->courier_id ? $order->courier->courier_name : 'Not Assign' }}</td>
+                                {{-- <td class="text-center">{{ $order->courier_id ? $order->courier->courier_name : 'Not Assign' }}</td> --}}
                                 <td class="text-center">৳ {{ number_format(orderSubtotal($order->id)) }}</td>
                                 <td>
-                                    {{ date('d-F-Y', strtotime($order->order_date)) }}
+                                    {{ $order->product_commission }}
                                 </td>
                                 {{-- <td>{{ $order->status->os_name }}</td> --}}
                                 {{-- @role('Super Admin|Admin|Manager')

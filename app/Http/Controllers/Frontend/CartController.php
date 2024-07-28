@@ -23,12 +23,14 @@ class CartController extends Controller
             'name' => $request->product_name,
             'quantity' => $request->product_quantity,
             'price' => $request->product_price,
+            
             'attributes' => array(
                 'image' => $request->product_image,
                 'url' => $request->product_url,
                 'color' => $request->product_color,
                 'size' => $request->product_size,
                 'product_code' => $request->product_code,
+                'product_commission' => $request->product_commission,
             )
         ]);
         if ($add) {
@@ -55,6 +57,7 @@ class CartController extends Controller
                     'image' => $request->product_image,
                     'size' => $request->product_size,
                     'color' => $request->product_color,
+                    'product_commission' => $request->product_commission,
                 )
             ]
         );
