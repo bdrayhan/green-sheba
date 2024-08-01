@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     @endrole
-                    @role('Super Admin|Admin|Manager')
+                    @role('Super Admin|Admin')
                         <div class="col-md-3">
                             <div class="card mini-stats-wid">
                                 <div class="card-body">
@@ -105,7 +105,7 @@
             </div>
         </div>
     {{-- Today Order --}}
-    @role('Super Admin|Admin|Manager')
+    @role('Super Admin|Admin')
         <div class="row">
             @role('Super Admin|Admin')
             <!-- Today Order -->
@@ -175,7 +175,7 @@
                 </div>
             </div>
             @endrole
-            @role('Super Admin|Admin|Manager')
+            @role('Super Admin|Admin')
             <!-- Month Order -->
             <div class="col-xl-4">
                 <div class="card">

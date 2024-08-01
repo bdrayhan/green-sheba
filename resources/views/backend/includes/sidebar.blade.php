@@ -51,7 +51,23 @@
                         </li>
                     </ul>
                 </li>
-            @endrole
+                @endrole
+                @role('Super Admin|Admin')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bxs-user-pin"></i>
+                        <span key="t-products">Commission</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li>
+                            <a href="{{ route('admin.commission') }}" key="t-new-product">Partner Commission</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.commission.withdraw.request') }}" key="t-all-product">Request Commission</a>
+                        </li>
+                    </ul>
+                </li>
+                @endrole
                 {{-- @role('Super Admin|Admin')
                     <li>
                         <a href="{{ route('admin.partner.request') }}" class="waves-effect">
@@ -194,7 +210,7 @@
                 @role('Manager')
                     <li>
                         <a href="{{ route('backend.partner.commission') }}" class="waves-effect">
-                            <i class='bx bxs-coin' ></i>
+                            <i class="fa-solid fa-house"></i>
                             <span key="t-invocie">Commission</span>
                         </a>
                     </li>

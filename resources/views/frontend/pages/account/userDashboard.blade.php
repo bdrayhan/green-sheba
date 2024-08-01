@@ -3,7 +3,7 @@
 @section('web.content')
     <!--start page wrapper -->
 
-    <div class="container mt-5">
+    {{-- <div class="container mt-5">
         <div class="row">
             <div class="col-md-5">
                 <div class="side_menu_part shadow text-center">
@@ -36,7 +36,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-            <div class="col-md-7">
+            {{-- <div class="col-md-7">
                 <div class="side_menu_content_part">
                     <div>
                         <div class="tab-content text-black mb-5" id="nav-tabContent">
@@ -49,10 +49,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}
         </div>
-    </div>
-    {{-- <div class="page-wrapper">
+    </div> --}}
+    <div class="page-wrapper">
         <div class="page-content">
             <!--start breadcrumb-->
             <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
@@ -103,6 +103,6 @@
             </section>
             <!--end shop cart-->
         </div>
-    </div> --}}
+    </div>
     <!--end page wrapper -->
 @endsection

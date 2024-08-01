@@ -93,9 +93,7 @@
                                     <th>Manage</th>
                                 </tr>
                             </thead>
-                                @php
-                                    $electricians=App\Models\Electrician::orderBy('id','ASC')->get();
-                                @endphp
+                                
                             <tbody>
                                 @foreach($electricians as $data)
                                     <tr>
@@ -103,7 +101,7 @@
                                         <td></td>
                                         <td>{{ $data->first_name }}</td>
                                         <td>{{ $data->phone }}</td>
-                                        <td>{{ $data->electrician->name }}</td>
+                                        <td>{{ $data->electrician_category }}</td>
                                         <td>
                                             {{ $data->division->name}},
                                             {{ $data->district->name }},

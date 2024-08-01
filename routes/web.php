@@ -10,6 +10,8 @@ use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Backend\Partner\PartnerController;
 use App\Http\Controllers\Backend\Partner\OrderController;
 use App\Http\Controllers\Backend\Partner\CommissionController;
+use App\Http\Controllers\Backend\Partner\WithdrawController;
+use App\Models\Withdraw;
 use Illuminate\Support\Facades\Route;
 
 // ---------------------------------------------------------------
@@ -138,14 +140,22 @@ Route::controller(PartnerController::class)->group(function () {
     Route::prefix('/partner/registration')->group(function(){
         Route::get('/', 'registration_index')->name('partner.registration.index');
         Route::post('/', 'registration')->name('partner.registration');
-        // Route::get('/create', 'create')->name('backend.partner.product.add');
-        // Route::post('/', 'insert')->name('backend.partner.product.insert');
-        // Route::get('/edit/{slug}', 'edit')->name('backend.partner.product.edit');
-        // Route::put('/{slug}', 'update')->name('backend.partner.product.update');
-        // Route::get('/delete/{slug}', 'delete')->name('backend.partner.product.delete');
-        // Route::get('/status/{slug}', 'status')->name('backend.partner.product.status');
-        // Route::get('/gallery/{slug}', 'galleryRemove')->name('backend.partner.gallery.remove');
-        // Route::post('/multi-delete', 'multipleDelete')->name('backend.partner.multi.delete');
+    });
+});
+
+Route::controller(PartnerController::class)->group(function () {
+    Route::prefix('/partner/profile')->group(function(){
+        Route::get('/', 'profile')->name('partner.profile.index');
+        // Route::post('/', 'registration')->name('partner.registration');
+
+    });
+});
+//withdraw amount route
+Route::controller(WithdrawController::class)->group(function () {
+    Route::prefix('/partner/commission/withdraw')->group(function(){
+        Route::post('/', 'insert')->name('partner.commission.withdraw.insert');
+        // Route::post('/', 'registration')->name('partner.registration');
+
     });
 });
 

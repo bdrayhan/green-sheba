@@ -72,7 +72,7 @@
                                     <tr>
                                         <td>Electrician Category</td>
                                         <td>:</td>
-                                        <td>{{ $data->electrician->name }}</td>
+                                        <td>{{ $data->catInfo->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Address1</td>

@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\OrderDetail;
 use App\Models\Shipping;
 use App\Models\Coupon;
+use App\Models\OrderStatus;
+use App\Models\Courier;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -63,18 +65,20 @@ class CheckoutController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
-    }
+    } 
     // Coupon Function End
 
     public function orderNow(Request $request)
     {
+        // $order_details = OrderDetail::where('order_id', $order_id)->get();
+
         // Auto User Assign To Order
         $assignUser = User::role(['User'])->where('online_status', 1)->inRandomOrder()->first();
         if (!$assignUser) {
             $assignUser = User::findOrFail(1);
         }
         // ORDER FUNCTION
-        $data = array();
+        $data = array(); 
         if (Auth::check()) {
             $data['user_id'] = auth()->user()->id;
         } else {
@@ -87,7 +91,6 @@ class CheckoutController extends Controller
             $data['coupon_amount'] = Session::get('coupon')['discount'];
         }
         $data['order_subtotal'] = Cart::getSubTotal();
-        // $data['product_commission'] = Cart::total();
         $data['shipping_charge'] = $request->area === 'inside-dhaka' ? 80 : 150;
         if ($request->coupon_code) {
             if ($request->area === 'inside-dhaka') {
@@ -130,6 +133,7 @@ class CheckoutController extends Controller
         $details = array();
         foreach ($contents as $row) {
             $details['order_id'] = $order;
+            $details['user_id'] = auth()->user()->id;
             $details['product_id'] = $row->id;
             $details['product_name'] = $row->name;
             $details['product_code'] = $row->attributes->product_code;

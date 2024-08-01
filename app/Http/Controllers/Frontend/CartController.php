@@ -23,6 +23,7 @@ class CartController extends Controller
             'name' => $request->product_name,
             'quantity' => $request->product_quantity,
             'price' => $request->product_price,
+            'product_commission' => $request->product_commission,
             
             'attributes' => array(
                 'image' => $request->product_image,
@@ -51,14 +52,16 @@ class CartController extends Controller
             [
                 'quantity' => array(
                     'relative' => false,
-                    'value' => $request->product_quantity
+                    'value' => $request->product_quantity,
+                    'product_commission' => $request->product_commission,
                 ),
                 'attributes' => array(
                     'image' => $request->product_image,
                     'size' => $request->product_size,
                     'color' => $request->product_color,
                     'product_commission' => $request->product_commission,
-                )
+                ),
+                'product_commission' => $request->product_commission,
             ]
         );
         if ($update) {

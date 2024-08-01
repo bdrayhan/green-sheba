@@ -27,11 +27,12 @@ use Exception;
 class PartnerController extends Controller
 {
 
-    //partner registration
-
     public function registration_index(){
-        return view('partner.profile.index');
+        return view('partner.registration');
     }
+
+
+    //partner registration
     public function registration(Request $request){
 
         DB::transaction(function () use ($request) {
@@ -64,15 +65,15 @@ class PartnerController extends Controller
     
                 $user = User::create($data);
                 $user->assignRole('Manager');
-                return response()->json([
-                    'status' => 'success',
-                    'message' => "User Create Successfully!",
-                ]);
+                // return response()->json([
+                //     'status' => 'success',
+                //     'message' => "User Create Successfully!",
+                // ]);
             } catch ( Exception $e) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => $e->getMessage(),
-                ]);
+                // return response()->json([
+                //     'status' => 'error',
+                //     'message' => $e->getMessage(),
+                // ]);
             }
 
             if($insert){
@@ -83,5 +84,10 @@ class PartnerController extends Controller
                 return redirect()->back();
             }
         });
+    }
+
+    public function profile(){
+        $data=User::where('status',1)->firstOrFail();
+        return view('partner.profile.index',compact('data'));
     }
 }

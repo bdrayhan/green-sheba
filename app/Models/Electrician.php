@@ -10,7 +10,7 @@ class Electrician extends Model{
 
     protected $primaryKey='id';
 
-    public function electrician(){
+    public function catInfo(){
         return $this->belongsTo('App\Models\ElectricianCategory','electrician_category','id');
     }
     public function division(){

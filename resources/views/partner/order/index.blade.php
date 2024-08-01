@@ -92,9 +92,9 @@
                                                 <a class="dropdown-item" href="{{ route('backend.partner.order.details', $order->order_slug) }}">
                                                     <i class="bx bx-show-alt align-middle me-2"></i> Show
                                                 </a>
-                                                <a id="delete" class="dropdown-item" href="{{ route('admin.order.delete', $order->order_slug) }}">
+                                                {{-- <a id="delete" class="dropdown-item" href="{{ route('admin.order.delete', $order->order_slug) }}">
                                                     <i class="bx bx-trash-alt align-middle me-2"></i> Delete
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                 </td>

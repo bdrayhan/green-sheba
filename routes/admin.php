@@ -37,6 +37,7 @@ use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Frontend\ElectricianController;
+use App\Http\Controllers\Backend\Partner\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -266,6 +267,20 @@ Route::prefix('admin')->middleware(['auth', 'role:Super Admin|Admin|Manager'])->
         Route::get('/deactive/{slug}', 'deactive')->name('admin.partner.deactive');
         Route::post('/multi-delete', 'mulipleDelete')->name('admin.partner.multi.delete');
     });
+
+    //withdraw amount route
+    Route::controller(WithdrawController::class)->group(function () {
+        Route::prefix('/partner/commission')->group(function(){
+            Route::get('/request', 'request_commission')->name('admin.commission.withdraw.request');
+            Route::get('/list', 'commission')->name('admin.commission');
+            Route::get('/view/{slug}', 'request_view')->name('partner.commission.view');
+            Route::post('/status', 'status')->name('partner.commission.withdraw.paid');
+
+        });
+    });
+
+
+    
 
     // <-- --------------- CITY ROUTE LIST ---------------- -->
     Route::controller(CityController::class)->middleware(['role:Super Admin|Admin|Manager'])->prefix('city')->group(function () {

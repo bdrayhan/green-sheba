@@ -1,4 +1,4 @@
-{{-- @extends('frontend.layouts.app')
+@extends('frontend.layouts.app')
 @section('frontend-title', 'Home')
 @section('web.content')
     <!--start page wrapper -->
@@ -99,4 +99,4 @@
         </div>
     </div>
     <!--end page wrapper -->
-@endsection --}}
+@endsection

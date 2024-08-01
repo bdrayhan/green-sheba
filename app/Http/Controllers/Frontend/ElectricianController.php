@@ -56,15 +56,15 @@ class ElectricianController extends Controller
     }
 
     public function index(){
-        $divisions=Division::orderBy('id' , 'DESC')->get();
-        return view('frontend.pages.electrician.home',compact('divisions'));
+        $electricians=Electrician::where('status',1)->orderBy('id' , 'DESC')->get();
+        return view('frontend.pages.electrician.home',compact('electricians'));
     }
 
     public function insert(Request $request){
         $this->validate($request,[
             'first_name'=>'required',
             'phone'=>'required|max:20|unique:electricians,phone',
-            'email'=>'required|unique:electricians,email',
+            // 'email'=>'required|unique:electricians,email',
             'date_of_birth'=>'required',
             'nid_number'=>'required|unique:electricians,nid_number',
             'category'=>'required',
@@ -72,7 +72,7 @@ class ElectricianController extends Controller
         ],[
             'first_name.required'=>'Please enter First Name',
             'phone.required'=>"please enter phone number",
-            'email.required'=>"Please enter email",
+            // 'email.required'=>"Please enter email",
             'date_of_birth.required'=>"Please enter date of birth",
             'nid_number.required'=>"Please enter Nid Number",
             'category.required'=>"Please Select Electrician Category",
